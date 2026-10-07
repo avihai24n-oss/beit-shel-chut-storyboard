@@ -325,6 +325,35 @@ a.pin{display:inline-block;margin-top:6px;font:700 12px var(--f-body);color:#8A2
 .ncard .nt{flex-basis:100%;margin-inline-end:0}
 }
 @media (min-width:761px){.stage .hint .h-m{display:none}}
+/* full screen + on-stage controls */
+.rotmsg{display:none}
+.fsb{position:absolute;z-index:6;top:10px;right:12px;width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,231,184,.4);background:rgba(20,14,8,.6);color:#FFE7B8;font-size:19px;line-height:1;cursor:pointer}
+.sov{position:absolute;z-index:6;left:50%;bottom:12px;transform:translateX(-50%);display:none;align-items:center;gap:6px;background:rgba(20,14,8,.72);border:1px solid rgba(201,165,90,.55);border-radius:999px;padding:5px;direction:rtl;max-width:calc(100% - 20px)}
+.sov button{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,231,184,.12);color:#FFE7B8;font:700 18px var(--f-body);cursor:pointer}
+.sov button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.sov-l{color:#FFE7B8;font:600 13px var(--f-body);padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.stage.isfs .sov{display:flex}
+.stage.isfs .hint,.stage.isfs .seatlbl{display:none}
+.stage:fullscreen{aspect-ratio:auto;width:100vw;height:100vh;border-radius:0;border:0}
+.stage:-webkit-full-screen{aspect-ratio:auto;width:100vw;height:100vh;border-radius:0;border:0}
+.stage.pfs{position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;border:0;margin:0}
+.stage.pfs.rot{width:100dvh;height:100vw;left:100vw;transform-origin:top left;transform:rotate(90deg)}
+.stage.isfs.flatmode{aspect-ratio:auto}
+.stage.isfs.flatmode .flat{position:absolute;inset:0;grid-template-columns:1fr 1.25fr 1fr;gap:1.4%;padding:2.2% 2% 64px}
+.stage.isfs.flatmode .flat .fs .in{flex:1;aspect-ratio:auto;overflow:hidden}
+html.nofs-scroll,html.nofs-scroll body{overflow:hidden}
+@media (max-width:760px){
+.sov{display:flex}
+.stage .hint{display:none}
+.rotmsg{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;padding:10px 12px;background:var(--accent-soft);border:1px solid var(--line);border-radius:12px;font:600 14px var(--f-body);color:var(--ink)}
+.rotmsg button{flex:none;font:700 13px var(--f-body);border-radius:999px;padding:7px 12px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+.stage.flatmode .sov{position:sticky;bottom:12px;left:auto;transform:none;margin:0 auto 12px;width:max-content}
+}
+@media (max-width:760px) and (orientation:landscape){.rotmsg span{display:none}}
+@media (orientation:landscape) and (max-height:500px){.rotmsg{display:none}}
+.stage.isfs.flatmode .sov{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);margin:0;width:auto}
+.stage.isfs .seatlbl{display:none}
+@media (max-width:760px){.stage .seatlbl{bottom:64px}}
 </style>
 </head>
 <body>
@@ -488,6 +517,7 @@ a.pin{display:inline-block;margin-top:6px;font:700 12px var(--f-body);color:#8A2
 <section class="tab" data-tab="room" id="room" hidden>
 <h2 class="section-title">הדמיית החלל: מה הצופה רואה</h2>
 
+<div class="rotmsg"><span>📱↻ סובבו את הטלפון לרוחב לתצוגה מלאה</span><button type="button" data-fs>⛶ מסך מלא</button></div>
 <div class="stage" id="stage">
  <div class="vp" id="vp">
   <div class="room3d">
@@ -507,6 +537,8 @@ a.pin{display:inline-block;margin-top:6px;font:700 12px var(--f-body);color:#8A2
  <div class="seatlbl" hidden>המושב של חנה זלאטה: "בדיוק היכן שאתם יושבים"</div>
  <div class="flat"><div class="fs" data-f="right"><h5>ימין (א')</h5><div class="in"></div></div><div class="fs" data-f="center"><h5>מסך מרכזי</h5><div class="in"></div></div><div class="fs" data-f="left"><h5>שמאל (ב')</h5><div class="in"></div></div></div>
  <div class="hint"><span class="h-d">הזיזו את העכבר או גררו כדי להסתכל מסביב</span><span class="h-m">לקריאה נוחה בטלפון: "מסכים פרוסים" למטה</span></div>
+ <button type="button" class="fsb" data-fs aria-label="מסך מלא">⛶</button>
+ <div class="sov"><button type="button" data-ov="prev" aria-label="הסצנה הקודמת">→</button><span class="sov-l"></span><button type="button" data-ov="next" aria-label="הסצנה הבאה">←</button><button type="button" data-ov="flat" aria-label="מסכים פרוסים">🔍</button></div>
 </div>
 
 <div class="ctl">
@@ -532,6 +564,43 @@ a.pin{display:inline-block;margin-top:6px;font:700 12px var(--f-body);color:#8A2
 </div>
 
 </section>
+<script>
+(function(){
+  var stage=document.getElementById('stage');if(!stage)return;
+  var sov=stage.querySelector('.sov'),lbl=stage.querySelector('.sov-l'),flatBtn=document.querySelector('.ctl [data-flat]');
+  function click(sel){var b=document.querySelector(sel);if(b)b.click()}
+  sov.addEventListener('pointerdown',function(e){e.stopPropagation()});
+  sov.addEventListener('mousemove',function(e){e.stopPropagation()});
+  sov.querySelector('[data-ov=prev]').addEventListener('click',function(){click('.ctl [data-go="-1"]')});
+  sov.querySelector('[data-ov=next]').addEventListener('click',function(){click('.ctl [data-go="1"]')});
+  var ovFlat=sov.querySelector('[data-ov=flat]');
+  ovFlat.addEventListener('click',function(){click('.ctl [data-flat]')});
+  function sync(){var c=document.querySelector('.chips button[aria-selected="true"]');
+    var t=c?('סצנה '+c.firstChild.textContent+' · '+(c.title||'').replace(/^סצנה \d+:\s*/,'')):'';if(lbl.textContent!==t)lbl.textContent=t;
+    var v=flatBtn&&flatBtn.getAttribute('aria-pressed')==='true'?'true':'false';if(ovFlat.getAttribute('aria-pressed')!==v)ovFlat.setAttribute('aria-pressed',v)}
+  new MutationObserver(sync).observe(document.querySelector('#room'),{subtree:true,childList:true,attributes:true,attributeFilter:['aria-selected','aria-pressed']});
+  sync();
+  function native(){return document.fullscreenElement||document.webkitFullscreenElement}
+  function refit(){window.dispatchEvent(new Event('resize'))}
+  function orient(){stage.classList.toggle('rot',stage.classList.contains('pfs')&&window.innerHeight>window.innerWidth);refit()}
+  function setFs(on){stage.classList.toggle('isfs',on);fsBtns.forEach(function(b){if(b.classList.contains('fsb')){b.textContent=on?'✕':'⛶';b.setAttribute('aria-label',on?'יציאה ממסך מלא':'מסך מלא')}});refit()}
+  function enter(){
+    var req=stage.requestFullscreen||stage.webkitRequestFullscreen;
+    if(req){try{var p=req.call(stage);if(p&&p.then){p.then(function(){if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(function(){})}).catch(pseudo);return}}catch(e){}}
+    pseudo()}
+  function pseudo(){stage.classList.add('pfs');document.documentElement.classList.add('nofs-scroll');setFs(true);orient()}
+  function exit(){
+    if(native()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+    stage.classList.remove('pfs','rot');document.documentElement.classList.remove('nofs-scroll');setFs(false)}
+  var fsBtns=[].slice.call(document.querySelectorAll('#room [data-fs]'));
+  fsBtns.forEach(function(b){b.addEventListener('pointerdown',function(e){e.stopPropagation()});b.addEventListener('click',function(){(stage.classList.contains('isfs')?exit:enter)()})});
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){document.addEventListener(ev,function(){
+    if(native()===stage){setFs(true)}else if(!stage.classList.contains('pfs')){setFs(false);try{screen.orientation.unlock()}catch(e){}}})});
+  window.addEventListener('resize',function(){if(stage.classList.contains('pfs')){var r=stage.classList.contains('rot'),want=window.innerHeight>window.innerWidth;if(r!==want)orient()}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&stage.classList.contains('pfs'))exit()});
+})();
+</script>
+
 <section class="tab prep" data-tab="prep" id="prep" hidden>
 <h2 class="section-title">דמויות ולוקיישנים</h2>
 
