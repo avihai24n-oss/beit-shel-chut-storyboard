@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>בית של חוט · סטוריבורד</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F1E8; --card:#FFFDF9; --ink:#1F1A14; --body:#4A4237; --muted:#857A6B;
+  --line:#E4DACB; --accent:#B4581C; --accent-soft:#F3E3D3; --flame:#E89A3C;
+  --f-head:"Frank Ruhl Libre",Georgia,serif; --f-body:"Heebo",system-ui,-apple-system,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1720px;margin:0 auto;padding:0 20px 60px}
+.hero{padding:40px 0 10px;text-align:center}
+.hero .eb{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--accent)}
+.hero h1{font-family:var(--f-head);color:var(--ink);font-size:clamp(30px,6vw,46px);margin:6px 0 4px}
+.hero p{color:var(--muted);margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:26px 0 0;padding:0;list-style:none}
+.stats li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stats b{display:block;font-family:var(--f-head);color:var(--accent);font-size:26px;line-height:1.2}
+.stats span{font-size:14px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 0;font-size:14px;color:var(--muted)}
+.b{display:inline-block;font:700 11.5px var(--f-body);border-radius:6px;padding:1px 7px;margin-inline-end:4px;vertical-align:1px;white-space:nowrap}
+.b.ai{background:#F3E3D3;color:#8A3E10;border:1px solid #E2C2A3}
+.b.la{background:#E3EFE6;color:#2F6B3A;border:1px solid #B6CDB9}
+.b.ar{background:#ECE8E1;color:#5F574B;border:1px solid #D6CFC3}
+.b.gr{background:#E6E9F2;color:#3D4A6B;border:1px solid #C6CCDD}
+.b.snd{background:#EEE6F3;color:#5B3A75;border:1px solid #D4C2E0}
+.b.q{background:#FFF1C9;color:#7A5600;border:1px solid #E8CF85}
+.b.ph{background:#E2ECEF;color:#2F5560;border:1px solid #BCD0D6}
+ul.it{list-style:none;margin:0;padding:0}
+ul.it li{display:flex;gap:7px;align-items:flex-start;padding:3px 0}
+ul.it li+li{border-top:1px dashed #EDE4D6}
+ul.it li .b{flex:none;margin-top:3px;min-width:46px;text-align:center}
+#draft ul.it li{font-size:14.5px;line-height:1.55}
+.section-title{font-family:var(--f-head);color:var(--ink);font-size:clamp(24px,5vw,30px);margin:40px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.section-sub{color:var(--muted);margin:0 0 22px}
+
+#draft .dr-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+#draft .dr-bar button{font:600 14px var(--f-body);border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+#draft .dr-bar button.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+#draft .dr-bar button[hidden]{display:none}
+#draft .dr-status{font-size:13px;color:var(--muted);margin-inline-start:auto}
+#draft .dr-note{font-size:14px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:0 0 14px}
+#draft .tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+#draft table{width:100%;border-collapse:collapse;min-width:1400px}
+#draft th{position:sticky;top:0;background:var(--accent-soft);color:var(--ink);font-size:13.5px;text-align:start;padding:10px 12px;border-bottom:1px solid var(--line)}
+#draft td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;line-height:1.65}
+#draft tr:last-child td{border-bottom:0}
+#draft td.n{font-family:var(--f-head);font-weight:700;color:var(--accent);font-size:18px;width:36px}
+#draft td.y{white-space:nowrap;font-size:13px;color:var(--muted);width:96px}
+#draft td.y .kind{display:block;margin-top:4px;font-weight:700;color:var(--ink)}
+#draft td.t{font-family:var(--f-head);font-weight:700;color:var(--ink);width:130px}
+#draft td[data-k="right"],#draft td[data-k="center"],#draft td[data-k="left"]{width:18%}
+#draft td[data-k="center"]{background:#FFF8EE}
+#draft td[data-k="hear"]{background:#FFFBF4;width:15%}
+#draft.editing td[data-k]{background:#FFFBF2;outline:1px dashed var(--accent);outline-offset:-4px;cursor:text}
+#draft td[data-k]:focus{outline:2px solid var(--accent);background:#fff}
+#draft .dr-hist{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+#draft .dr-hist h3{font-family:var(--f-head);color:var(--ink);font-size:18px;margin:0 0 8px}
+#draft .dr-empty{margin:0;color:var(--muted);font-size:14px}
+#draft .dr-log{list-style:none;margin:0;padding:0}
+#draft .dr-log>li{border-top:1px solid var(--line);padding:10px 0}
+#draft .dr-log>li:first-child{border-top:0}
+#draft .dr-when{font-size:13px;font-weight:700;color:var(--accent)}
+#draft .dr-ch{margin:6px 0 0;font-size:14px;line-height:1.6}
+#draft .dr-ch b{color:var(--ink)}
+#draft .dr-ch del{background:#FBF0EC;color:#A33D1E;text-decoration:line-through;padding:0 2px}
+#draft .dr-ch ins{background:#EFF5F0;color:#2F6B3A;text-decoration:none;padding:0 2px}
+#draft td.changed{box-shadow:inset 3px 0 0 #2F6B3A}
+#draft td.dn,#draft th.dn{width:56px;text-align:center}
+#draft .ck{width:30px;height:30px;border-radius:8px;border:2px solid var(--line);background:#fff;cursor:pointer;font-size:18px;line-height:1;color:#fff;padding:0}
+#draft .ck[aria-pressed="true"]{background:#2F8A47;border-color:#2F8A47}
+#draft .ck[aria-pressed="true"]::after{content:"✓"}
+#draft tr.done td:not(.dn){opacity:.72}
+#draft tr.done td.n{color:#2F8A47}
+#draft td.notes{min-width:170px;font-size:14px;color:var(--body);background:#FFFEF9}
+#draft td.notes:empty::before{content:"—";color:var(--muted)}
+#draft .dr-prog{font-size:13.5px;font-weight:700;color:#2F6B3A;background:#EFF5F0;border:1px solid #B6CDB9;border-radius:999px;padding:4px 12px}
+@media (max-width:600px){#draft td{font-size:14px}.wrap{padding:0 16px 40px}}
+
+
+.tabs{display:flex;gap:8px;justify-content:center;margin:22px 0 0;flex-wrap:wrap}
+.tabs button{font:700 15px var(--f-body);border-radius:999px;padding:9px 20px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.stage{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#0B0806;box-shadow:0 18px 40px -24px rgba(31,26,20,.55);touch-action:pan-y;cursor:grab}
+.vp{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;perspective:1000px;perspective-origin:var(--po-x,50%) var(--po-y,46%);direction:ltr;transition:perspective-origin .25s ease-out}
+.room3d{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(400px)}
+.room3d>*{position:absolute;transform-style:preserve-3d}
+.surf{position:absolute;inset:0;transition:filter .9s}
+.stage:not(.lit) .surf,.stage:not(.lit) .arch,.stage:not(.lit) .chair,.stage:not(.lit) .wl,.stage:not(.lit) .dome{filter:brightness(.36) saturate(.8)}
+.wall{width:1600px;height:900px;top:0;left:0}
+.wall .surf{background:repeating-linear-gradient(0deg,rgba(150,128,92,.45) 0 2px,transparent 2px 46px),repeating-linear-gradient(90deg,rgba(150,128,92,.35) 0 2px,transparent 2px 124px),linear-gradient(#CDBB9C,#E6D8BE 55%,#CDB999)}
+.wall::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(#A48C63,#8C744F);box-shadow:0 -6px 0 #BBA57F}
+.back{transform:translateZ(-1600px)}
+.side.left{transform-origin:left center;transform:rotateY(90deg)}
+.side.right{transform-origin:right center;transform:rotateY(-90deg)}
+.side .surf{background:repeating-linear-gradient(0deg,rgba(150,128,92,.45) 0 2px,transparent 2px 46px),repeating-linear-gradient(90deg,rgba(150,128,92,.35) 0 2px,transparent 2px 124px),linear-gradient(#C7B494,#DCCDB0 55%,#C3AF8E)}
+.side.left .surf{background-color:#C7B494;box-shadow:inset -260px 0 220px -120px rgba(40,28,16,.35)}
+.side.right .surf{box-shadow:inset 260px 0 220px -120px rgba(40,28,16,.35)}
+.floor{left:0;top:900px;width:1600px;height:1600px;transform-origin:top center;transform:rotateX(-90deg)}
+.floor .surf{background:repeating-linear-gradient(90deg,rgba(40,24,12,.35) 0 3px,transparent 3px 100px),linear-gradient(#5E4128,#7A573A)}
+.ceil{left:0;top:-1600px;width:1600px;height:1600px;transform-origin:bottom center;transform:rotateX(90deg)}
+.ceil .surf{background:radial-gradient(circle at 50% 50%,#BFAE8C 0,#A99470 60%,#8F7B58 100%)}
+.dome{position:absolute;left:500px;top:500px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,#7E9A88 0,#5E7C6A 60%,#4A6656 100%);box-shadow:0 0 0 14px #C9A55A,0 0 0 26px #A48C63}
+.arch{position:absolute;border-radius:9999px 9999px 0 0;border:14px solid #A88E63;border-bottom:0;background:repeating-linear-gradient(45deg,#8C6A3E 0 3px,transparent 3px 22px),repeating-linear-gradient(-45deg,#8C6A3E 0 3px,transparent 3px 22px),#2A2018;transition:filter .9s}
+.back .arch{left:230px;width:1140px;top:70px;height:760px}
+.side .arch{width:980px;top:110px;height:720px}
+.side.left .arch{left:560px}.side.right .arch{left:60px}
+.wl{position:absolute;bottom:84px;left:0;right:0;text-align:center;font:700 30px var(--f-body);color:#5A4426;letter-spacing:1px;direction:rtl;transition:filter .9s}
+.side.left .wl{left:560px;right:auto;width:980px}.side.right .wl{left:60px;right:auto;width:980px}
+.lamp{left:var(--x);top:170px;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:radial-gradient(circle,#FFF4D6 0,#FFD58A 45%,rgba(255,200,110,0) 72%);transform:translateZ(var(--z));opacity:.35;transition:opacity .9s}
+.lamp::before{content:"";position:absolute;left:22px;bottom:40px;width:2px;height:300px;background:#3A2A1A}
+.stage.lit .lamp{opacity:1;box-shadow:0 0 90px 40px rgba(255,214,140,.35)}
+.chair{position:absolute;width:130px;height:190px;border-radius:65px 65px 6px 6px;background:linear-gradient(#80522C,#4E2F17);border:3px solid #3A2312;box-shadow:inset 0 14px 0 -6px #9A6A3C;transition:filter .9s}
+.chair.hs{outline:6px solid #E8B85A;outline-offset:4px}
+.scr{position:absolute;container-type:inline-size;cursor:pointer;transition:transform 1.4s cubic-bezier(.6,.05,.3,1),opacity 1.4s;direction:rtl}
+.back .scr{left:270px;top:170px;width:1060px;height:596px}
+.side .scr{top:220px;width:820px;height:461px}
+.side.left .scr{left:640px}.side.right .scr{left:140px}
+.stage.up .scr{transform:translateY(-130%);opacity:0}
+.side .scr{--tilt:14deg}
+.side.left .scr{transform-origin:0 50%;transform:rotateY(calc(var(--tilt)*-1))}
+.side.right .scr{transform-origin:100% 50%;transform:rotateY(var(--tilt))}
+.stage.up .side.left .scr{transform:rotateY(calc(var(--tilt)*-1)) translateY(-130%)}
+.stage.up .side.right .scr{transform:rotateY(var(--tilt)) translateY(-130%)}
+.scr .in{position:absolute;inset:0;border:6px solid #120D09;box-shadow:0 0 0 2px #000,0 0 80px rgba(255,214,150,.25);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:5cqw 5.5cqw;color:#FFF7EA}
+.scr.sel .in{outline:10px solid var(--flame);outline-offset:8px}
+.scr .in .bd{display:flex;gap:1.5cqw;flex-wrap:wrap;margin-bottom:2.4cqw}
+.scr .in .bd .b{font-size:3.4cqw;padding:.3cqw 1.6cqw}
+.scr .in{justify-content:flex-start;padding:4.2cqw 4.6cqw 3cqw}
+.scr .in ul.it{font-size:calc(var(--k,1)*3.3cqw);line-height:1.38;margin-top:4.2cqw}
+.scr .in ul.it li{padding:.5em 0;gap:.6em}
+.scr .in ul.it li+li{border-top:1px solid rgba(255,255,255,.14)}
+.in.emb ul.it li+li{border-top-color:rgba(90,61,18,.18)}
+.scr .in ul.it li .b{font-size:.72em;min-width:3.6em;padding:.15em .4em;margin-top:.15em}
+.scr .in ul.it .tx{text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.in.emb ul.it .tx{text-shadow:none;color:#3A2A14}
+.flat{position:absolute;inset:0;z-index:4;display:none;grid-template-columns:1fr 1.25fr 1fr;gap:1.4%;padding:2.2% 2%;background:radial-gradient(120% 120% at 50% 0,#2A2018,#0B0806)}
+.stage.flatmode .flat{display:grid}.stage.flatmode .vp,.stage.flatmode .hint,.stage.flatmode .seatlbl{visibility:hidden}
+.flat .fs{display:flex;flex-direction:column;min-height:0}
+.flat .fs h5{margin:0 0 6px;text-align:center;font:700 clamp(10px,1.2vw,14px) var(--f-body);color:#F3E3D3}
+.flat .fs .in{position:relative;flex:1;min-height:0;container-type:inline-size;border:4px solid #120D09;border-radius:4px;overflow:hidden;color:#FFF7EA;padding:4.2cqw 4.6cqw 3cqw}
+.flat .fs .in ul.it{font-size:calc(var(--k,1)*5cqw);line-height:1.38;margin-top:5cqw}
+.flat .fs .in ul.it li{padding:.45em 0;gap:.6em}
+.flat .fs .in ul.it li+li{border-top:1px solid rgba(255,255,255,.14)}
+.flat .fs .in ul.it li .b{font-size:.72em;min-width:3.6em;padding:.15em .4em;margin-top:.15em}
+.flat .fs .in .sn{position:absolute;top:3cqw;inset-inline-start:4cqw;font:600 4cqw var(--f-body);opacity:.75}
+.scr .in .cap{font:700 6.4cqw/1.3 var(--f-head);text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.scr .in .sn{position:absolute;top:3.5cqw;inset-inline-start:4.5cqw;font:600 3.4cqw var(--f-body);opacity:.75}
+.stage .seatlbl{position:absolute;z-index:3;left:50%;bottom:4%;transform:translateX(-50%);background:rgba(31,26,20,.85);color:#FFE7B8;font:600 clamp(10px,1.2vw,14px) var(--f-body);padding:4px 12px;border-radius:999px;border:1px solid #C9A55A;white-space:nowrap}
+.stage .hint{position:absolute;z-index:3;top:10px;left:12px;font:500 12px var(--f-body);color:rgba(255,240,220,.7);background:rgba(0,0,0,.35);padding:3px 10px;border-radius:999px;pointer-events:none}
+.in.ai{background:radial-gradient(120% 90% at 30% 20%,#8A6440 0%,#4A3220 55%,#1E140C 100%)}
+.in.night{background:radial-gradient(40% 40% at 50% 55%,rgba(255,190,110,.55),transparent 70%),linear-gradient(#0E0B14,#2A1D16)}
+.in.la{background:radial-gradient(110% 90% at 70% 15%,#4F6D78 0%,#22343D 60%,#0F1A1F 100%)}
+.in.ar{background:radial-gradient(120% 100% at 50% 40%,#9A8C78 0%,#5C5245 60%,#2E2822 100%);filter:sepia(.25)}
+.in.gr{background:#050403}
+.in.emb{background:repeating-linear-gradient(45deg,rgba(201,165,90,.10) 0 2px,transparent 2px 9px),#F3EBDC;color:#3A2A14!important}
+.in.emb::after{content:"";position:absolute;inset:4cqw;border:1.2cqw dotted #C9A55A;border-radius:2cqw;opacity:.8;pointer-events:none}
+.in.emb .cap{text-shadow:none;color:#5A3D12}
+.in.emb .sn{color:#7A5A2A}
+.in.img{background-size:cover;background-position:center 45%}
+.in.img::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(20,12,4,.78))}
+.in.img>*{position:relative}
+.in .st{font-size:calc(var(--k,1)*3.7cqw);line-height:1.5;margin-top:7cqw;text-shadow:0 1px 4px rgba(0,0,0,.55)}
+.flat .fs .in .st{font-size:calc(var(--k,1)*6.6cqw);margin-top:8cqw}
+.in .st .b{font-size:.6em;padding:.12em .5em;margin-inline-end:.4em;vertical-align:.2em;text-shadow:none}
+.in .st br{display:block;content:"";margin-top:.7em}
+.in.emb .st{color:#3A2A14;text-shadow:none}
+.in.flow::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(255,226,170,.28) 45%,transparent 60%);background-size:220% 100%;animation:flow 1.6s linear infinite}
+@keyframes flow{from{background-position:120% 0}to{background-position:-120% 0}}
+.stage .tagl{position:absolute;z-index:3;top:59%;text-align:center;font:700 clamp(9px,1.1vw,14px) var(--f-body);color:#F3E3D3;letter-spacing:.5px;pointer-events:none;text-shadow:0 1px 3px #000}
+.stage .seatlbl{position:absolute;z-index:3;left:50%;bottom:4%;transform:translateX(-50%);background:rgba(31,26,20,.85);color:#FFE7B8;font:600 clamp(10px,1.2vw,14px) var(--f-body);padding:4px 12px;border-radius:999px;border:1px solid #C9A55A;white-space:nowrap}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:14px 0 0}
+.ctl .nav{font:600 14px var(--f-body);border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.ctl .nav[data-flat][aria-pressed="true"],.ctl .nav.pl[aria-pressed="true"],.ctl .nav[data-lights][aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.chips button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--card);font:700 14px var(--f-head);color:var(--ink);cursor:pointer;position:relative}
+.chips button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips button i{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:14px;height:3px;border-radius:2px}
+.chips i.k-ai{background:#D08A52}.chips i.k-mix{background:linear-gradient(90deg,#D08A52 50%,#3F8A52 50%)}.chips i.k-la{background:#3F8A52}.chips i.k-gr{background:#8C93A8}
+.now{margin:18px 0 0}
+.now-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 10px}
+.now-n{font:700 30px var(--f-head);color:var(--accent)}
+.now-t{font:700 24px var(--f-head);color:var(--ink);margin:0}
+.now-m{font-size:14px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cards.two{grid-template-columns:1fr 1fr;margin-top:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.65;transition:border-color .2s,box-shadow .2s}
+.card.sel{border-color:var(--flame);box-shadow:0 0 0 2px rgba(232,154,60,.3)}
+.card h4{margin:0 0 6px;font:700 13px var(--f-body);color:var(--accent);letter-spacing:.5px}
+.card.hear{background:#FFFBF4}
+.xsec{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:16px;align-items:center;margin:22px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.xsec svg{width:100%;height:auto;display:block;border-radius:8px}
+.xsec p{margin:0;font-size:15px}
+@media (max-width:760px){.cards,.cards.two,.xsec{grid-template-columns:1fr}.ctl .nav{padding:7px 12px}}
+@media (prefers-reduced-motion:reduce){.scr,.surf,.vp{transition:none}.in.flow::before{animation:none}}
+
+.prep h3.ph{font-family:var(--f-head);color:var(--ink);font-size:22px;margin:34px 0 8px}
+.prep .pn{font-size:15px;margin:0 0 12px;max-width:900px}
+.prep .tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.pt{width:100%;border-collapse:collapse;min-width:760px}
+.pt th{background:var(--accent-soft);color:var(--ink);font-size:13.5px;text-align:start;padding:10px 12px;border-bottom:1px solid var(--line)}
+.pt td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14.5px;line-height:1.6}
+.pt tr:last-child td{border-bottom:0}
+.pt td.nm{font-weight:700;color:var(--ink);white-space:nowrap}
+.pt tr.grp td{background:#FFFBF4}.pt tr.no td{background:#F3EFE8;color:var(--muted)}
+.lv{display:inline-block;font:700 12px var(--f-body);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.lv.l3{background:#F7DCCB;color:#8A2E0A}.lv.l2{background:#FBEBC8;color:#7A5600}.lv.l1{background:#E3EFE6;color:#2F6B3A}
+.pst{margin-top:10px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 40px;position:relative;font-size:14.5px}
+.steps li::before{content:counter(s);position:absolute;inset-inline-start:12px;top:9px;font:700 16px var(--f-head);color:var(--accent)}
+.steps li{padding-inline-start:36px;padding-inline-end:12px}
+.steps li span{display:block;font-size:12.5px;color:var(--muted)}
+.steps li span::before{content:"סצנה "}
+.chipsx{display:flex;flex-wrap:wrap;gap:8px}
+.chipsx span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 12px;font-size:14px;color:var(--muted)}
+.chipsx b{color:var(--ink);margin-inline-end:6px}
+.hard{margin:0;padding-inline-start:20px}.hard li{margin:6px 0;font-size:15px}
+.hero .openn{display:inline-block;margin-top:12px;font:700 14px var(--f-body);color:#8A2E0A;background:#F7DCCB;border:1px solid #E9B99B;border-radius:999px;padding:5px 14px;text-decoration:none;cursor:pointer}
+.nf{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 14px}
+.nf-row{display:flex;flex-wrap:wrap;gap:6px}
+.nf-row button{font:600 13px var(--f-body);border-radius:999px;padding:5px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.nf-row button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.nf-sc{font-size:14px}.nf-sc select,.nadd select,.nadd input,.nadd textarea{font:15px var(--f-body);border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+.nf-count{font-size:13px;color:var(--muted);margin-inline-start:auto}
+.ngrp h3{font-family:var(--f-head);color:var(--ink);font-size:20px;margin:22px 0 8px}
+.ngrp h3 small{font:500 13px var(--f-body);color:var(--muted);margin-inline-start:8px}
+.ncard{background:var(--card);border:1px solid var(--line);border-inline-start:4px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 8px}
+.ncard.s-open{border-inline-start-color:#C8501C}.ncard.s-rec{border-inline-start-color:#D9A21C}.ncard.s-done{border-inline-start-color:#3F8A52;opacity:.85}
+.ncard .nh{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.ncard .nt{font:700 16px var(--f-body);color:var(--ink);margin-inline-end:auto}
+.pill{font:700 11.5px var(--f-body);border-radius:999px;padding:2px 9px;background:#EFE8DC;color:var(--body);white-space:nowrap}
+.pill.st-פתוח{background:#F7DCCB;color:#8A2E0A}.pill.st-המלצה{background:#FBEBC8;color:#7A5600}.pill.st-הוחלט,.pill.st-בוצע{background:#E3EFE6;color:#2F6B3A}
+.pill.sc{background:var(--accent-soft);color:var(--accent)}.pill.loc{background:#E2ECEF;color:#2F5560}
+.ncard .nby{font-size:12.5px;color:var(--muted);margin-top:4px}
+.ncard .nx{font-size:14.5px;margin:6px 0 0}
+.ncard .nr{font-size:14.5px;margin:8px 0 0;background:#FFFBF4;border:1px solid #F0E3CC;border-radius:8px;padding:8px 10px}
+.ncard .nr::before{content:"המלצה: ";font-weight:700;color:var(--accent)}
+.nadd{margin:22px 0 0;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:10px 14px}
+.nadd summary{cursor:pointer;font-weight:700;color:var(--ink)}
+.nadd-b{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.nadd-b label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.nadd-b label.w,.nadd-a{grid-column:1/-1}
+.nadd-a{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nadd-a button{font:600 14px var(--f-body);border-radius:999px;padding:7px 16px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.nadd-a button.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.nadd-s{font-size:13px;color:var(--muted)}
+a.pin{display:inline-block;margin-top:6px;font:700 12px var(--f-body);color:#8A2E0A;background:#F7DCCB;border-radius:999px;padding:1px 9px;text-decoration:none;cursor:pointer}
+.card.nn ul{margin:0;padding-inline-start:18px}.card.nn li{margin:3px 0}.card.nn a{color:var(--accent);cursor:pointer}
+@media (max-width:760px){.nadd-b{grid-template-columns:1fr}}
+
+
+#draft td.notes .an{margin:0 0 8px}#draft td.notes .an .by{display:block;font-size:12px;color:var(--muted)}
+
+.pg{margin:34px 0 0}
+.pg-h{display:flex;align-items:baseline;gap:10px;margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.pg-h h3{font:700 22px var(--f-head);color:var(--ink);margin:0}
+.pg-c{font-size:13px;color:var(--muted)}
+.pgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.pgrid.wide{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.pc{display:flex;flex-direction:column;padding:0;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;cursor:pointer;text-align:start;font:inherit;color:inherit;transition:border-color .15s,transform .15s}
+.pc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.pc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pc-f,.pd-f{display:block;aspect-ratio:3/4;background:#E9E1D3;overflow:hidden}
+.pgrid.wide .pc-f,.pd.wide .pd-f{aspect-ratio:16/9}
+.pc-f img,.pd-f img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.pc-f.empty,.pd-f.empty{background:repeating-linear-gradient(45deg,transparent 0 10px,rgba(133,122,107,.07) 10px 11px),#E9E1D3}
+.pc-n{display:block;padding:10px 12px 12px;font:700 17px/1.3 var(--f-head);color:var(--ink)}
+.pd{border:0;padding:0;border-radius:6px;width:min(420px,calc(100vw - 32px));background:var(--card);color:var(--body);direction:rtl;box-shadow:0 30px 60px -20px rgba(31,26,20,.5)}
+.pd.wide{width:min(620px,calc(100vw - 32px))}
+.pd::backdrop{background:rgba(31,26,20,.55)}
+.pd .pd-f{max-height:52vh;width:100%}
+.pd-b{padding:16px 20px 20px}
+.pd-t{font:700 26px var(--f-head);color:var(--ink);margin:0 0 12px}
+.pd-l{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;font-size:15px}
+.pd-l dt{color:var(--muted);font-size:13.5px;padding-top:1px}
+.pd-l dd{margin:0;color:var(--ink)}
+.pd-x{position:absolute;top:10px;inset-inline-start:10px;z-index:1;width:34px;height:34px;border-radius:50%;border:0;background:rgba(31,26,20,.6);color:#fff;font-size:15px;cursor:pointer}
+@media (max-width:560px){.pgrid{grid-template-columns:repeat(2,1fr);gap:10px}.pgrid.wide{grid-template-columns:1fr}}
+.pd-th{display:flex;gap:6px;padding:8px 20px 0;overflow-x:auto}.pd-th:empty{display:none}
+.pd-th button{flex:none;width:64px;height:48px;padding:0;border:2px solid transparent;border-radius:3px;overflow:hidden;cursor:pointer;background:#E9E1D3}
+.pd-th button[aria-pressed="true"]{border-color:var(--accent)}
+.pd-th img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* phone + tablet: storyboard rows as cards */
+@media (max-width:1100px){
+#draft .tw{border:0;background:none;overflow:visible;border-radius:0}
+#draft table{min-width:0;display:block}
+#draft thead{display:none}
+#draft tbody{display:block}
+#draft tbody tr[data-id]{display:grid;grid-template-columns:auto auto 1fr;gap:4px 10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 12px;padding:12px 14px}
+#draft tbody tr[data-id] td{display:block;border:0;padding:0;width:auto!important;min-width:0}
+#draft td.dn{grid-column:1;grid-row:1}
+#draft td.n{grid-column:2;grid-row:1}
+#draft td.t{grid-column:3;grid-row:1;font-size:18px}
+#draft td.y{grid-column:1/-1;white-space:normal}
+#draft td.y .kind{display:inline-block;margin-inline-start:10px}
+#draft td[data-l]{grid-column:1/-1;background:none!important;border-top:1px dashed var(--line)!important;padding-top:9px!important;margin-top:6px}
+#draft td[data-l]::before{content:attr(data-l);display:block;font:700 12.5px var(--f-body);color:var(--accent);margin-bottom:3px}
+#draft td.notes:empty{display:none}
+}
+@media (max-width:1400px){.ctl .chips{order:-1;flex-basis:100%}}
+/* phone layout */
+@media (max-width:760px){
+#draft .dr-bar{gap:6px}#draft .dr-bar button{padding:7px 12px;font-size:13px}
+.stage{aspect-ratio:4/3}
+.stage.flatmode{aspect-ratio:auto}
+.stage.flatmode .vp{display:none}
+.stage.flatmode .flat{position:relative;inset:auto;grid-template-columns:1fr;gap:12px;padding:12px}
+.stage.flatmode .flat .fs .in{flex:none;aspect-ratio:16/9}
+.stage .hint .h-d{display:none}.stage .hint .h-m{display:inline}.stage .hint{font-size:10.5px;top:8px;left:8px;right:8px;text-align:center}
+.stage .seatlbl{font-size:10.5px;bottom:3%}
+.ctl{gap:6px}.ctl .chips{order:-1;flex-basis:100%}.chips button{width:32px;height:32px}
+.stage.flatmode .flat .fs .in{overflow:visible}
+.flat .fs h5{font-size:12px}
+#draft .ck{width:36px;height:36px}
+.nadd summary{padding:6px 0}
+.ncard .nt{flex-basis:100%;margin-inline-end:0}
+}
+@media (min-width:761px){.stage .hint .h-m{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="eb">תפארת ישראל · קומה 5 · טיוטה</div>
+  <h1>בית של חוט</h1>
+  <p>סטוריבורד לשלושה מסכים, לפי הטריטמנט של משה אלפי מ-5.10.26</p>
+  <a class="openn" role="button">📌 דגשים פתוחים</a>
+</header>
+<nav class="tabs" role="tablist"><button type="button" role="tab" data-t="board" aria-selected="true">סטוריבורד</button><button type="button" role="tab" data-t="room" aria-selected="false">הדמיית החלל</button><button type="button" role="tab" data-t="prep" aria-selected="false">דמויות ולוקיישנים</button><button type="button" role="tab" data-t="notes" aria-selected="false">📌 דגשים</button></nav>
+<div class="tab" data-tab="board">
+
+
+<section id="draft">
+<h2 class="section-title">טיוטה: מה רואים בכל מסך ומה שומעים</h2>
+<p class="section-sub">ימין (א'), מרכז ושמאל (ב'), כמו בטריטמנט. הזמנים הם הערכה. ההערות כוללות את מה שצריך לבדוק ואת נקודות הסיכון בהפקה.</p>
+<div class="dr-bar">
+  <button type="button" class="pri" data-act="edit">✏️ עריכה</button>
+  <button type="button" class="pri" data-act="save" hidden>💾 שמירה</button>
+  <button type="button" data-act="cancel" hidden>ביטול</button>
+  <button type="button" data-act="export">⬇️ ייצוא קובץ</button>
+  <button type="button" data-act="reset">איפוס לטיוטה המקורית</button>
+  <span class="dr-prog"></span>
+  <span class="dr-status" aria-live="polite"></span>
+</div>
+<p class="dr-note">לחיצה על <b>עריכה</b> מאפשרת לשנות כל תא. <b>שמירה</b> שומרת בדפדפן הזה. <b>ייצוא קובץ</b> מוריד את הטיוטה, כולל היסטוריית השינויים, לתיקיית ההורדות. כל שמירה נרשמת כגרסה, ותאים ששונו מסומנים בפס ירוק.</p>
+<div class="tw"><table>
+<thead><tr><th class="dn">מוכן</th><th>#</th><th>זמן</th><th>סצנה</th><th>ימין (א')</th><th>מסך מרכזי</th><th>שמאל (ב')</th><th>מה שומעים</th><th>הערות</th></tr></thead>
+<tbody>
+<tr data-id="1"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">1</td><td class="y" data-k="time">~1:30<span class="kind">AI + צילום</span></td><td class="t" data-k="title">פתיחה: ניסן מדליק את האורות</td>
+<td data-k="right"><span class="b ar">ארכיון</span> תמונות משפחתיות תקופתיות של מאיר לייב וחנה זלאטה.<br><span class="b ai">AI</span> בד לבן מבריק נמתח על חישוק, חוט זהב שוכב עליו (אולי עם יד).</td>
+<td data-k="center"><span class="b ai">AI</span> המסך יורד ומכסה את השבכה. הקשתות ה"אמיתיות" מוקרנות עליו.<br><span class="b ai">AI</span> קול מפתח מסתובב, המצלמה יורדת לתוך בית הכנסת אל דלת הכניסה.<br><span class="b la">צילום</span> לילה. ניסן ב"ק נכנס עם ערימת סליחות, מדליק את האורות בהדרגה, מניח מחזורים ומונה את בעלי הכיסאות מ"ספר המקנה". פונה לצופים בעזרת הנשים.</td>
+<td data-k="left"><span class="b ar">ארכיון</span> תמונות משפחתיות תקופתיות.<br><span class="b ai">AI</span> בד על חישוק, חוט זהב.</td>
+<td data-k="hear">קול מפתח, צעדים, מתגי אור. ניסן מדבר ישירות לצופים: הכיסאות של ר' הערש וולף, ר' מנחם אליעזר, ר' שלום ברוך פריזנד, ומאיר יהודה לייב פישמן שקנה לחנה זלאטה מושב "בדיוק היכן שאתם יושבים". "בית של חוט".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="2"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">2</td><td class="y" data-k="time">~0:50<span class="kind">AI מלא</span></td><td class="t" data-k="title">הברית של התאומים של בלה</td>
+<td data-k="right"><span class="b ai">AI</span> התמונה הקפואה מסצנה 1 מתעוררת: פנים של נשים נצמדות לשבכה ומציצות למטה אל הברית, בלה ביניהן.</td>
+<td data-k="center"><span class="b ai">AI</span> פתח עזרת הגברים. בלה עם שני תינוקות, הכרזת הקוואטרים. בלה מוסרת לחנה, חנה למאיר, ניסן (בגרסת AI) פותח את הדלת. הם מביטים זה בזו. ניסן לוחש ברכה, "אמן" ביחד.</td>
+<td data-k="left"><span class="b ai">AI</span> כמו בימין: נשים מציצות מהשבכה.</td>
+<td data-k="hear">הכרזה מעזרת הגברים: "יעמדו הקוואטרים לתאומים". לחישה של ניסן: "שהקדוש ברוך הוא יפקוד אתכם בזרע של קיימא". מאיר וחנה: "אמן".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="3"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">3</td><td class="y" data-k="time">~0:55<span class="kind">AI מלא</span></td><td class="t" data-k="title">חנה בוכה בעזרת הנשים</td>
+<td data-k="right"><span class="b ai">AI</span> בלה ונשים אחרות שומעות את חנה בוכה ומביטות לכיוונה. בלה "עוזבת" את המסך שלה.</td>
+<td data-k="center"><span class="b ai">AI</span> חנה נכנסת לעזרת הנשים ונעמדת לבד ליד השבכה, מנגבת דמעות. בלה "נכנסת" למסך, חופנת את ידה ולוחשת לה. שתיהן בגבן לצופה.</td>
+<td data-k="left"><span class="b ai">AI</span> סינק שפתיים: חנה לוחשת מתפילת חנה.</td>
+<td data-k="hear">מלמטה: "ישמח האב ביוצא חלציו... משה גרשון... יצחק, זה הקטן גדול יהיה". בלה בלחש: על הברכה מהאדמו"ר מבויאן והתאומים. חנה: "ה' ממית ומחיה, מוריד שאול ויעל".</td>
+<td data-k="notes" class="notes"><p class="an"><b>המרכז ארוך והצדדים קצרים: מה מוצג כשאין תוכן?</b><br>בסצנה 3 המסך המרכזי ארוך מאוד, ובצדדים יש מעט. מה מוקרן בצדדים בשאר הזמן? מסך שחור? ואיך זה משפיע על העלות?<span class="by">אביחי · 7.10.26</span></p></td></tr>
+<tr data-id="4"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">4</td><td class="y" data-k="time">~0:25<span class="kind">AI מלא</span></td><td class="t" data-k="title">הרקמה מתחילה</td>
+<td data-k="right"><span class="b ai">AI</span> המשך רקמת עיטורי המסגרת של המפית.</td>
+<td data-k="center"><span class="b ai">AI</span> המפית על החישוק, מחולקת לשלושה מסכים. במרכז הלב עדיין ריק. יד רוקמת בחוט זהב.</td>
+<td data-k="left"><span class="b ai">AI</span> המשך רקמת עיטורי המסגרת.</td>
+<td data-k="hear">קריינות ניסן: לא היה להם כסף למסע לחצר האדמו"ר בסדיגורה שבאימפריה האוסטרו-הונגרית, והם התפללו לזכות בהגרלת "אורח לצדיק".</td>
+<td data-k="notes" class="notes"><p class="an"><b>תמונה אחת שמחולקת לשלושה מסכים: חיתוך או ייצור נפרד?</b><br>בסצנה 4 המפית מחולקת לשלושה מסכים, ובסצנה 7 אותו סיפור. האם לייצר סרטון אחד ולתת לעורך לחתוך? זה מוריד איכות. ואם מייצרים מרכז ושוליים בנפרד, ההתאמה ביניהם מסובכת.<span class="by">אביחי · 7.10.26</span></p></td></tr>
+<tr data-id="5"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">5</td><td class="y" data-k="time">~0:45<span class="kind">AI + צילום</span></td><td class="t" data-k="title">הגרלת "אורח לצדיק"</td>
+<td data-k="right"><span class="b la">צילום</span> תמונה של פנקס הזוכים בהגרלה.<br><span class="b ai">AI</span> קלוז אפ: המבט הכואב של חנה בעזרת הנשים.</td>
+<td data-k="center"><span class="b ai">AI</span> ניסן עובר בין הגברים עם קופה, כולם משלשלים מטבע. ניסן (או ר' משה חזן) מערבב את הפתקים.</td>
+<td data-k="left"><span class="b ai">AI</span> קלוז אפ על מאיר. "עלה בגורל: ר' שלום ברוך פריזנד". פניו המאוכזבות פונות לעזרת הנשים.</td>
+<td data-k="hear">ניסן מספר על ההגרלה: הקהילה אספה כסף כל השנה, והזוכה נסע לאדמו"ר על חשבון הקופה. קול: "עלה בגורל: ר' שלום ברוך פריזנד".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="6"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">6</td><td class="y" data-k="time">~0:25<span class="kind">AI + צילום</span></td><td class="t" data-k="title">בנק ולירו</td>
+<td data-k="right"><span class="b ai">AI</span> סטילס: שטרות ומטבעות של התקופה, תוך הבנק, אולי ולירו עצמו, גזיר עיתון על הרעב בירושלים.</td>
+<td data-k="center"><span class="b ai">AI</span> לונג שוט: מאיר נכנס לבנק ולירו, ליד שער יפו.</td>
+<td data-k="left"><span class="b la">צילום</span> ניסן מספר בפריים שמותאם למסך הצד.</td>
+<td data-k="hear">ניסן: אחרי ההגרלה הם שקלו הלוואה יקרה מאוד, וויתרו עליה בלב כבד.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="7"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">7</td><td class="y" data-k="time">~0:15<span class="kind">AI מלא</span></td><td class="t" data-k="title">חנה סופרת חלונות</td>
+<td data-k="right"><span class="b ai">AI</span> החלונות נרקמים.</td>
+<td data-k="center"><span class="b ai">AI</span> חנה מחוץ לבית הכנסת סופרת חלונות. המבט מטפס שורה אחרי שורה עד מעקה הגג.</td>
+<td data-k="left"><span class="b ai">AI</span> מעקה הגג נרקם.</td>
+<td data-k="hear">אמביאנס רחוב בעיר העתיקה. בלי טקסט.</td>
+<td data-k="notes" class="notes"><p class="an"><b>תמונה אחת שמחולקת לשלושה מסכים: חיתוך או ייצור נפרד?</b><br>בסצנה 4 המפית מחולקת לשלושה מסכים, ובסצנה 7 אותו סיפור. האם לייצר סרטון אחד ולתת לעורך לחתוך? זה מוריד איכות. ואם מייצרים מרכז ושוליים בנפרד, ההתאמה ביניהם מסובכת.<span class="by">אביחי · 7.10.26</span></p></td></tr>
+<tr data-id="8"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">8</td><td class="y" data-k="time">~0:25<span class="kind">AI מלא</span></td><td class="t" data-k="title">פלשבק: החופה על הגג</td>
+<td data-k="right"><span class="b ai">AI</span> הבזקים מהחופה: מסתובבים, "הרי את", "אם אשכחך ירושלים".</td>
+<td data-k="center"><span class="b ai">AI</span> המצלמה עולה לגג. לילה, נרות, החופה של מאיר וחנה, ברקע הר הבית.</td>
+<td data-k="left"><span class="b ai">AI</span> תמונות היסטוריות של הנוף מהגג.</td>
+<td data-k="hear">VO של חנה: "חלמתי על החתונה שלנו..."</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="9"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">9</td><td class="y" data-k="time">~0:45<span class="kind">AI מלא</span></td><td class="t" data-k="title">החצר והגט</td>
+<td data-k="right"><span class="b ai">AI</span> אלמנטים של חצר ובית מהתקופה.</td>
+<td data-k="center"><span class="b ai">AI</span> חצר משותפת בעיר העתיקה, בערך 1900. שכנה תולה חיתולים. חנה מכבסת, מאיר סוחט. היא מציעה גט, והוא שותק. כל אחד תופס קצה של סדין, והבד מסתובב לחבל אחד ביניהם.</td>
+<td data-k="left"><span class="b ai">AI</span> כביסה תלויה על חבל.</td>
+<td data-k="hear">חנה: "בחודש הבא יעברו עשר שנים מאז החתונה", ומציעה גט. מאיר: "אנחנו נשארים יחד והקב"ה יעזור".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="10"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">10</td><td class="y" data-k="time">~0:45<span class="kind">AI מלא</span></td><td class="t" data-k="title">העוגה של חנה</td>
+<td data-k="right"><span class="b ai">AI</span> חנה ומאיר בבגדי שבת נכנסים לבית הכנסת. היא מוסרת לו עוגה ועולה לעזרת הנשים. מביטה מהשבכה איך העוגה נגמרת, ושרה בלחש.</td>
+<td data-k="center"><span class="b ai">AI</span> החסידים מעבירים את העוגה ("אשתי אפתה"). תלמיד מברך את חנה ומאיר שיזכו לבן, "בורא מיני מזונות", "אמן". כולם שרים "אלה חמדה ליבי".</td>
+<td data-k="left"><span class="b ai">AI</span> פינות המפית הרקומה (יום טוב ושבת) למעברים.</td>
+<td data-k="hear">ניסן מספר על החסד: חנה עם העוגות, ניסן עם הכנסת אורחים. שירת "אלה חמדה ליבי וחוסה נא ואל תתעלם".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="11"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">11</td><td class="y" data-k="time">~0:10<span class="kind">AI מלא</span></td><td class="t" data-k="title">הכיפה הירוקה</td>
+<td data-k="right"><span class="b ai">AI</span> הכיפה הירוקה נרקמת.</td>
+<td data-k="center"><span class="b ai">AI</span> חנה מביטה מהחלון ורואה את הכיפה, לפי אחד הצילומים הקיימים.</td>
+<td data-k="left"><span class="b ai">AI</span> הכיפה הירוקה נרקמת.</td>
+<td data-k="hear">אמביאנס. בלי טקסט.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="12"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">12</td><td class="y" data-k="time">~0:25<span class="kind">AI מלא</span></td><td class="t" data-k="title">מאיר זוכה</td>
+<td data-k="right"><span class="b ai">AI</span> חנה מביטה במאיר מבעד לשבכה. מתח, ואז חיוך של הקלה ואושר.</td>
+<td data-k="center"><span class="b ai">AI</span> ההגרלה שוב, באותו סט של סצנה 5. קלוז אפ: משה חזן פותח את הפתק: "מאיר לייב פישמן". מזל טוב והמולה.</td>
+<td data-k="left"><span class="b ai">AI</span> קלוז אפ: מאיר מרים את ראשו לעזרת הנשים.</td>
+<td data-k="hear">"מאיר לייב פישמן!" ואחריו "מזל טוב" והמולה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="13"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">13</td><td class="y" data-k="time">~0:15<span class="kind">AI מלא</span></td><td class="t" data-k="title">הכיתוב על המפית</td>
+<td data-k="right"><span class="b ai">AI</span> יד רוקמת: "הצדיק המושיע".</td>
+<td data-k="center"><span class="b ai">AI</span> יד רוקמת: "מאיר יהודא לייב בן גיטל לאה לישועה".</td>
+<td data-k="left"><span class="b ai">AI</span> היד של חנה מוסרת למאיר בד מקופל.</td>
+<td data-k="hear">שקט ורחש חוט בבד.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="14"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">14</td><td class="y" data-k="time">~0:45<span class="kind">AI + צילום</span></td><td class="t" data-k="title">מאיר יוצא לדרך</td>
+<td data-k="right"><span class="b ai">AI</span> הנשים מתבוננות: בלה, התאומים שכבר בני 8, וחנה מנופפת. תקווה מהולה בדאגה.</td>
+<td data-k="center"><span class="b ai">AI</span> מונטאז' של ארבעה שוטים עם מזוודת העץ: על חמור יוצא מהחומות, עולה לאונייה ביפו, באונייה בלב ים, בכרכרה באוקראינה.</td>
+<td data-k="left"><span class="b la">צילום</span> ניסן במדיום קלוז: "דביקות יד", "כי בשמחה תצאו". הם לא עשו שבת בנפרד מאז החתונה, ועכשיו מדובר בשנה שלמה.</td>
+<td data-k="hear">ניסן מספר. שירת "כי בשמחה תצאו".</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="15"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">15</td><td class="y" data-k="time">~0:35<span class="kind">AI + צילום</span></td><td class="t" data-k="title">ארבע העונות</td>
+<td data-k="right"><span class="b ai">AI</span> חנה מביטה דרך השבכה כלפי מעלה.</td>
+<td data-k="center"><span class="b ai">AI</span> ה-POV שלה: הציורים בפנדנטיבים, חורף עם שלכת ושלג ומדליון עם נשר (עמ' 105), אביב וסתיו. המצלמה עוברת מפנדנטיב לפנדנטיב.</td>
+<td data-k="left"><span class="b la">צילום</span> ניסן מתבונן יחד עם חנה: את הציורים צייר הנכד שלו. אין טלפון ואין וואטסאפ, נותר רק להתפלל.</td>
+<td data-k="hear">ניסן מספר.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="16"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">16</td><td class="y" data-k="time">~0:50<span class="kind">AI מלא</span></td><td class="t" data-k="title">אצל האדמו"ר</td>
+<td data-k="right"><span class="b ai">AI</span> קלוז אפ של הרבי.<br><span class="b ai">AI</span> המטבע בקלוז אפ ביד הרבי.</td>
+<td data-k="center"><span class="b ai">AI</span> חצר האדמו"ר מבויאן. השמש קורא למאיר, והוא פורש את המפית. <b>פעם ראשונה שרואים את המפית בשלמותה.</b> האדמו"ר מתרגש, מברך ונותן מטבע כסף.</td>
+<td data-k="left"><span class="b ai">AI</span> קלוז אפ על מאיר.<br><span class="b ai">AI</span> יד מאיר מקבלת את המטבע ונסגרת עליו.</td>
+<td data-k="hear">האדמו"ר: סבו ר' ישראל מרוז'ין יזם את הבנייה, ואביו מסדיגורה מימן את הכיפה. הברכה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="17"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">17</td><td class="y" data-k="time">~0:25<span class="kind">AI מלא</span></td><td class="t" data-k="title">המסע חזרה</td>
+<td data-k="right"><span class="b ai">AI</span> גלגל מרכבה, חרטום אונייה, רגלי חמור. התנועה עוברת ממסך למסך.</td>
+<td data-k="center"><span class="b ai">AI</span> ההמשך של התנועה. רגלי מאיר יורדות מהחמור, הוא מניח את המזוודה ועומד מול השער המערבי של בית הכנסת.</td>
+<td data-k="left"><span class="b ai">AI</span> סוף התנועה, וחוזר חלילה.</td>
+<td data-k="hear">גלגלים, גלים, פרסות. בלי טקסט.</td>
+<td data-k="notes" class="notes"><p class="an"><b>סצנה 17: תנועה שעוברת בין שלושת המסכים</b><br>גלגל, חרטום ורגלי חמור עוברים ממסך למסך. זה עלול להיות בעייתי בייצור.<span class="by">אביחי · 7.10.26</span></p></td></tr>
+<tr data-id="18"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">18</td><td class="y" data-k="time">~0:10<span class="kind">AI מלא</span></td><td class="t" data-k="title">המבט על המבנה</td>
+<td data-k="right"><span class="b ai">AI</span> חלקים של בית הכנסת.</td>
+<td data-k="center"><span class="b ai">AI</span> מאיר מביט במטבע, והמבט משוטט על המבנה מבחוץ.</td>
+<td data-k="left"><span class="b ai">AI</span> חלקים של בית הכנסת.</td>
+<td data-k="hear">אמביאנס.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="19"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">19</td><td class="y" data-k="time">~0:25<span class="kind">AI + צילום</span></td><td class="t" data-k="title">הברית של הבן</td>
+<td data-k="right"><span class="b ai">AI</span> בלה ונשים מהקהילה מציצות מהשבכה.</td>
+<td data-k="center"><span class="b ai">AI</span> מראה של הפתיחה: חנה בכניסה לעזרת הגברים מוסרת את התינוק שלה לקוואטרית. הברית של הבן של מאיר וחנה.</td>
+<td data-k="left"><span class="b la">צילום</span> ניסן מתבונן בסיטואציה.</td>
+<td data-k="hear">ניגון ברית.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="20"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">20</td><td class="y" data-k="time">~1:00<span class="kind">צילום</span></td><td class="t" data-k="title">סוף: הילד והמפית</td>
+<td data-k="right"><span class="b ar">ארכיון</span> חזרה לתמונות התקופתיות.</td>
+<td data-k="center"><span class="b la">צילום</span> ניסן ליד הכיסא: "ליד מאיר לייב ישב בנו דוד". מתפללים מגיעים. ילד/ה נכנס/ת עם המפית המקורית ומוסר/ת לניסן. ניסן מושיב אותו/ה על הכיסא של סב-סבו.</td>
+<td data-k="left"><span class="b ar">ארכיון</span> תמונות תקופתיות.</td>
+<td data-k="hear">ניסן: "אמרתי לכם שזה סיפור על חוט... חוט ממש, וחוט של חסד, וחוט של שרשרת הדורות". נעליים במדרגות. "תישארו איתנו לסליחות, כן?"</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="21"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">21</td><td class="y" data-k="time">~0:15<span class="kind">גרפיקה</span></td><td class="t" data-k="title">סגירה</td>
+<td data-k="right"><span class="b gr">גרפיקה</span> תמונה ראשונה, חושך.</td>
+<td data-k="center"><span class="b gr">גרפיקה</span> חזרה לקשתות של עזרת הנשים, חושך, רולר.</td>
+<td data-k="left"><span class="b gr">גרפיקה</span> תמונה ראשונה, חושך.</td>
+<td data-k="hear">שקט. המסך מתרומם והאורות נדלקים.</td>
+<td data-k="notes" class="notes"></td></tr>
+</tbody></table></div>
+<div class="dr-hist"><h3>היסטוריית שינויים</h3><p class="dr-empty">עוד אין שינויים שמורים.</p><ul class="dr-log"></ul></div>
+</section>
+</div>
+<section class="tab" data-tab="room" id="room" hidden>
+<h2 class="section-title">הדמיית החלל: מה הצופה רואה</h2>
+
+<div class="stage" id="stage">
+ <div class="vp" id="vp">
+  <div class="room3d">
+   <div class="wall back"><div class="surf"></div><div class="arch"></div><div class="medal"></div>
+     <div class="scr" data-s="center"><div class="in"></div></div><div class="wl">מסך מרכזי</div></div>
+   <div class="wall side left"><div class="surf"></div><div class="arch"></div>
+     <div class="scr" data-s="left"><div class="in"></div></div><div class="wl">שמאל (ב')</div></div>
+   <div class="wall side right"><div class="surf"></div><div class="arch"></div>
+     <div class="scr" data-s="right"><div class="in"></div></div><div class="wl">ימין (א')</div></div>
+   <div class="floor"><div class="surf"></div></div>
+   <div class="ceil"><div class="surf"></div><div class="dome"></div></div>
+   <div class="lamp" style="--x:560px;--z:-500px"></div><div class="lamp" style="--x:1040px;--z:-500px"></div>
+   <div class="lamp" style="--x:560px;--z:-1050px"></div><div class="lamp" style="--x:1040px;--z:-1050px"></div>
+   <div id="chairs"></div>
+  </div>
+ </div>
+ <div class="seatlbl" hidden>המושב של חנה זלאטה: "בדיוק היכן שאתם יושבים"</div>
+ <div class="flat"><div class="fs" data-f="right"><h5>ימין (א')</h5><div class="in"></div></div><div class="fs" data-f="center"><h5>מסך מרכזי</h5><div class="in"></div></div><div class="fs" data-f="left"><h5>שמאל (ב')</h5><div class="in"></div></div></div>
+ <div class="hint"><span class="h-d">הזיזו את העכבר או גררו כדי להסתכל מסביב</span><span class="h-m">לקריאה נוחה בטלפון: "מסכים פרוסים" למטה</span></div>
+</div>
+
+<div class="ctl">
+  <button type="button" class="nav" data-go="-1" aria-label="הסצנה הקודמת">→ הקודמת</button>
+  <div class="chips" role="tablist" aria-label="סצנות"></div>
+  <button type="button" class="nav" data-go="1" aria-label="הסצנה הבאה">הבאה ←</button>
+  <button type="button" class="nav pl" data-play>▶ ניגון</button>
+  <button type="button" class="nav" data-flat aria-pressed="false">🔍 מסכים פרוסים</button>
+  <button type="button" class="nav" data-lights>💡 אורות בחלל</button>
+</div>
+
+<div class="now" style="display:none">
+  <div class="now-h"><span class="now-n"></span><h3 class="now-t"></h3><span class="now-m"></span></div>
+  <div class="cards">
+    <article class="card" data-c="right"><h4>ימין (א')</h4><div class="body"></div></article>
+    <article class="card" data-c="center"><h4>מסך מרכזי</h4><div class="body"></div></article>
+    <article class="card" data-c="left"><h4>שמאל (ב')</h4><div class="body"></div></article>
+  </div>
+  <div class="cards two">
+    <article class="card hear"><h4>מה שומעים</h4><div class="body" data-f="hear"></div></article>
+    <article class="card"><h4>הערות</h4><div class="body" data-f="notes"></div></article>
+  </div>
+</div>
+
+</section>
+<section class="tab prep" data-tab="prep" id="prep" hidden>
+<h2 class="section-title">דמויות ולוקיישנים</h2>
+
+<div class="pg"><div class="pg-h"><h3>דמויות</h3><span class="pg-c" data-count="cast"></span></div><div class="pgrid" data-grid="cast"></div></div>
+<div class="pg"><div class="pg-h"><h3>בית הכנסת</h3><span class="pg-c" data-count="shul"></span></div><div class="pgrid wide" data-grid="shul"></div></div>
+<div class="pg"><div class="pg-h"><h3>רקעים בחוץ</h3><span class="pg-c" data-count="out"></span></div><div class="pgrid wide" data-grid="out"></div></div>
+
+<dialog class="pd" id="pd">
+  <button type="button" class="pd-x" aria-label="סגירה">✕</button>
+  <div class="pd-f"></div><div class="pd-th"></div>
+  <div class="pd-b"><h3 class="pd-t"></h3><dl class="pd-l"></dl></div>
+</dialog>
+</section>
+<script>
+(function(){
+  // imgs: תמונות רפרנס (הראשונה מוצגת בכרטיסייה). בלי imgs הכרטיסייה ריקה.
+  var E='assets/ref/entrance/20260909_';
+  var DATA={
+    cast:[
+      {n:'חנה זלאטה',d:{'מי':'הגיבורה, רוקמת את המפית','מראות':'כ-18 · כ-28 · כ-36 · תקריב ידיים','תלבושת':'חתונה · יומיום · שבת · רחוב','סצנות':'2, 3, 5, 7–15, 19','רמה':'כבד'}},
+      {n:'מאיר לייב',d:{'מי':'הגיבור, נוסע לאדמו"ר','מראות':'כ-20 · כ-30 · כ-38','תלבושת':'חתונה · יומיום · שבת · מסע','סצנות':'2, 5, 6, 8–10, 12–14, 16–18','רמה':'כבד'}},
+      {n:'בלה',d:{'מי':'החברה של חנה, אמא של התאומים','מראות':'כ-28 · כ-36','תלבושת':'יומיום · שבת','סצנות':'2, 3, 14, 19','רמה':'בינוני'}},
+      {n:'התאומים',d:{'מי':'משה גרשון ויצחק, הבנים של בלה','מראות':'תינוקות · בני 8','סצנות':'2, 14','רמה':'בינוני'}},
+      {n:'ניסן ב"ק',d:{'מי':'המספר, גם בתוך הסיפור','מראות':'לפי השחקן ובתלבושת שלו','סצנות':'2, 5 (אולי 10)','רמה':'בינוני'}},
+      {n:'האדמו"ר מבויאן',d:{'מי':'ר\' יצחק, "פחד יצחק"','מראות':'כ-60','תלבושת':'לבוש חסידי של החצר','סצנות':'16','רמה':'בינוני'}},
+      {n:'ר\' משה חזן',d:{'מי':'מקריא את שם הזוכה','סצנות':'5, 12','רמה':'קל'}},
+      {n:'השמש של האדמו"ר',d:{'מי':'קורא למאיר להיכנס','סצנות':'16','רמה':'קל'}},
+      {n:'התלמיד',d:{'מי':'חסיד צעיר, כ-18','סצנות':'10','רמה':'קל'}},
+      {n:'הקוואטרית',d:{'מי':'מקבלת את דוד בברית','סצנות':'19','רמה':'קל'}},
+      {n:'השכנה',d:{'מי':'תולה חיתולים בחצר','סצנות':'9','רמה':'קל'}},
+      {n:'דוד',d:{'מי':'הבן של מאיר וחנה, תינוק','סצנות':'19','רמה':'קל'}},
+      {n:'נשות עזרת הנשים',d:{'מי':'ניצבות, 4–6 פנים קבועות','מראות':'שני גילים','סצנות':'2, 3, 14, 19','רמה':'בינוני'}},
+      {n:'חסידים',d:{'מי':'ניצבים, 8–10 פנים','סצנות':'2, 5, 10, 12, 14, 19','רמה':'בינוני'}}
+    ],
+    shul:[
+      {n:'עזרת הנשים',imgs:[E+'114932.jpg',E+'114903.jpg'],d:{'מה רואים':'השבכה, המושבים, חנה ליד השבכה','תאורה':'יום, שבת','סצנות':'2, 3, 5, 10, 12, 15, 19','רמה':'כבד','רפרנס':'המבנה המשוחזר היום (9.9.26)'}},
+      {n:'השבכה מלמטה',d:{'מה רואים':'פנים של נשים מאחורי השבכה','תאורה':'יום','סצנות':'2, 5, 12, 19','רמה':'בינוני'}},
+      {n:'עזרת הגברים',imgs:[E+'104442.jpg',E+'104512.jpg',E+'104504.jpg',E+'104451.jpg',E+'114903.jpg'],d:{'מה רואים':'בימה, ארון קודש, כיסאות','תאורה':'יום, שבת','סצנות':'2, 5, 10, 12, 19','רמה':'כבד','רפרנס':'המבנה המשוחזר היום (9.9.26)'}},
+      {n:'הדלת לעזרת הגברים',d:{'מה רואים':'מסירת התינוקות','תאורה':'יום','סצנות':'2, 19','רמה':'בינוני'}},
+      {n:'המדרגות',d:{'מה רואים':'חנה עולה לעזרת הנשים','תאורה':'יום','סצנות':'3, 10','רמה':'קל'}},
+      {n:'הכיפה והפנדנטיבים',imgs:[E+'104433.jpg'],d:{'מה רואים':'ציורי ארבע העונות, מדליון הנשר (עמ\' 105)','תאורה':'יום','סצנות':'15','רמה':'בינוני','רפרנס':'המבנה המשוחזר היום (9.9.26)'}},
+      {n:'הגג',d:{'מה רואים':'המעקה, נוף להר הבית, חופה ונרות','תאורה':'לילה','סצנות':'8','רמה':'בינוני'}},
+      {n:'החזית',d:{'מה רואים':'החלונות, מעקה הגג, הכיפה הירוקה, השער המערבי','תאורה':'יום','סצנות':'7, 11, 17, 18','רמה':'בינוני'}}
+    ],
+    out:[
+      {n:'החצר בעיר העתיקה',d:{'מה קורה':'כביסה, השכנה, סצנת הגט','סצנות':'9','רמה':'כבד'}},
+      {n:'הרחוב מול בית הכנסת',d:{'מה קורה':'חנה סופרת חלונות, מאיר חוזר','סצנות':'7, 17, 18','רמה':'בינוני'}},
+      {n:'בנק ולירו',d:{'מה קורה':'מאיר נכנס. ליד שער יפו','סצנות':'6','רמה':'בינוני'}},
+      {n:'היציאה מהחומות',d:{'מה קורה':'מאיר על חמור, הנשים מנופפות','סצנות':'14','רמה':'בינוני'}},
+      {n:'נמל יפו',d:{'מה קורה':'מאיר עולה לאונייה','סצנות':'14','רמה':'בינוני'}},
+      {n:'האונייה',d:{'מה קורה':'מאיר על הסיפון','סצנות':'14, 17','רמה':'קל'}},
+      {n:'הדרכים בבוקובינה',d:{'מה קורה':'כרכרה, גלגל מרכבה','סצנות':'14, 17','רמה':'קל'}},
+      {n:'חצר האדמו"ר',d:{'מה קורה':'החצר והחדר שבו המפית נפרשת','סצנות':'16','רמה':'כבד'}},
+      {n:'החלון אל הכיפה',d:{'מה קורה':'לבירור: מהבית או מעזרת הנשים','סצנות':'11','רמה':'קל'}},
+      {n:'סטילס תקופתיים',d:{'מה קורה':'שטרות, מטבעות, גזיר עיתון','סצנות':'6, 8','רמה':'קל'}}
+    ]
+  };
+  var root=document.getElementById('prep'), dlg=document.getElementById('pd');
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function pic(src,n){return '<img src="'+esc(src)+'" alt="'+esc(n)+'" loading="lazy">'}
+  function frame(it){return it.imgs&&it.imgs.length?pic(it.imgs[0],it.n):''}
+  Object.keys(DATA).forEach(function(g){
+    var grid=root.querySelector('[data-grid="'+g+'"]');
+    root.querySelector('[data-count="'+g+'"]').textContent=DATA[g].length;
+    DATA[g].forEach(function(it,i){
+      var b=document.createElement('button');b.type='button';b.className='pc';
+      b.innerHTML='<span class="pc-f'+(it.imgs?'':' empty')+'">'+frame(it)+'</span><span class="pc-n">'+esc(it.n)+'</span>';
+      b.addEventListener('click',function(){open(g,i)});grid.appendChild(b);
+    });
+  });
+  function open(g,i){var it=DATA[g][i];
+    dlg.classList.toggle('wide',g!=='cast');
+    var f=dlg.querySelector('.pd-f'),th=dlg.querySelector('.pd-th'),im=it.imgs||[];f.className='pd-f'+(im.length?'':' empty');f.innerHTML=frame(it);
+    th.innerHTML=im.length>1?im.map(function(u,j){return '<button type="button" aria-pressed="'+(j?'false':'true')+'">'+pic(u,it.n)+'</button>'}).join(''):'';
+    [].forEach.call(th.children,function(b,j){b.onclick=function(){f.innerHTML=pic(im[j],it.n);[].forEach.call(th.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')})}});
+    dlg.querySelector('.pd-t').textContent=it.n;
+    dlg.querySelector('.pd-l').innerHTML=Object.keys(it.d).map(function(k){return '<dt>'+esc(k)+'</dt><dd>'+esc(it.d[k])+'</dd>'}).join('');
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+  }
+  function close(){if(dlg.close)dlg.close();else dlg.removeAttribute('open')}
+  dlg.querySelector('.pd-x').addEventListener('click',close);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)close()});
+})();
+</script>
+<section class="tab notes" data-tab="notes" id="notes" hidden>
+<h2 class="section-title">דגשים</h2>
+<p class="section-sub">דגשים כלליים שלא שייכים לסצנה אחת. דגשים של סצנה מסוימת נמצאים בעמודת "הערות" בטיוטה. הדגשים שמורים בקובץ <b>דגשים.json</b> בתיקיית הפרויקט. דגש שמוסיפים כאן נשמר בדפדפן הזה, ואפשר לייצא אותו כדי שייכנס לקובץ.</p>
+<div class="nf" style="display:none">
+  <div class="nf-row" data-f="status"></div>
+  <div class="nf-row" data-f="cat"></div>
+  <label class="nf-sc">סצנה <select data-f="scene"><option value="">הכול</option><option value="0">כללי</option></select></label>
+  <span class="nf-count"></span>
+</div>
+<div class="nlist"></div>
+<details class="nadd"><summary>➕ הוספת דגש</summary>
+  <div class="nadd-b">
+    <label>סצנה <select data-a="scene"><option value="0">כללי</option></select></label>
+    <label>קטגוריה <select data-a="cat"></select></label>
+    <label>כותרת <input data-a="title" type="text" placeholder="במשפט אחד"></label>
+    <label class="w">פירוט <textarea data-a="text" rows="3"></textarea></label>
+    <div class="nadd-a"><button type="button" class="pri" data-a="save">שמירה</button><button type="button" data-a="export">⬇️ ייצוא הדגשים החדשים</button><span class="nadd-s" aria-live="polite"></span></div>
+  </div>
+</details>
+</section>
+</div>
+
+<script>
+(function(){
+  var sec=document.getElementById('draft'); if(!sec) return;
+  var KEY='tiferet5-draft-v1', HKEY='tiferet5-draft-hist-v1', DKEY='tiferet5-draft-done-v1';
+  var cells=[].slice.call(sec.querySelectorAll('td[data-k]')), st=sec.querySelector('.dr-status'),
+      btn=function(a){return sec.querySelector('[data-act="'+a+'"]')}, original={}, snapshot={};
+  var LABEL={time:'זמן',title:'סצנה',right:'ימין',center:'מרכז',left:'שמאל',hear:'מה שומעים',notes:'הערות',done:'מוכן'};
+  function keyOf(td){return td.closest('tr').getAttribute('data-id')+'.'+td.getAttribute('data-k')}
+  function txt(h){var d=document.createElement('div');d.innerHTML=h;return (d.innerText||d.textContent).replace(/\s+/g,' ').trim()}
+  function esc(t){return t.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  cells.forEach(function(td){original[keyOf(td)]=td.innerHTML});
+  var ths=[].map.call(sec.querySelectorAll('thead th'),function(th){return th.textContent});
+  [].forEach.call(sec.querySelectorAll('tbody tr[data-id]'),function(tr){[].forEach.call(tr.children,function(td,i){if(/^(right|center|left|hear|notes)$/.test(td.getAttribute('data-k')||''))td.setAttribute('data-l',ths[i]||'')})});
+  function read(){var o={};cells.forEach(function(td){o[keyOf(td)]=td.innerHTML});return o}
+  function apply(o){cells.forEach(function(td){var k=keyOf(td);if(o&&o[k]!=null)td.innerHTML=o[k]})}
+  function getJ(k,d){try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}}
+  function setJ(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+  function sceneName(k){var tr=sec.querySelector('tr[data-id="'+k.split('.')[0]+'"]');var t=tr&&tr.querySelector('[data-k=title]');return k.split('.')[0]+' · '+(t?t.innerText.trim():'')}
+  function wdiff(a,b){var A=a.split(' '),B=b.split(' '),n=A.length,m=B.length,L=[];
+    for(var i=0;i<=n;i++){L[i]=[];for(var j=0;j<=m;j++)L[i][j]=0}
+    for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--)L[i][j]=A[i]===B[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    var out=[],i2=0,j2=0;while(i2<n&&j2<m){if(A[i2]===B[j2]){out.push(esc(A[i2]));i2++;j2++}
+      else if(L[i2+1][j2]>=L[i2][j2+1]){out.push('<del>'+esc(A[i2])+'</del>');i2++}else{out.push('<ins>'+esc(B[j2])+'</ins>');j2++}}
+    while(i2<n)out.push('<del>'+esc(A[i2++])+'</del>');while(j2<m)out.push('<ins>'+esc(B[j2++])+'</ins>');
+    return out.join(' ').replace(/<\/del> <del>/g,' ').replace(/<\/ins> <ins>/g,' ')}
+  function changes(prev,cur){var c=[];Object.keys(cur).forEach(function(k){var a=txt(prev[k]||''),b=txt(cur[k]||'');if(a!==b)c.push({k:k,before:a,after:b})});return c}
+  function render(){var h=getJ(HKEY,[]),log=sec.querySelector('.dr-log'),em=sec.querySelector('.dr-empty');log.innerHTML='';em.hidden=h.length>0;
+    h.slice().reverse().forEach(function(v,idx){var li=document.createElement('li');
+      li.innerHTML='<div class="dr-when">גרסה '+(h.length-idx)+' · '+new Date(v.t).toLocaleString('he-IL')+' · '+v.c.length+' שינויים</div>'+
+        v.c.map(function(x){var f=x.k.split('.')[1];return '<p class="dr-ch"><b>'+esc(sceneName(x.k))+' · '+(LABEL[f]||f)+':</b> '+wdiff(x.before,x.after)+'</p>'}).join('');
+      log.appendChild(li)});
+    var cur=read();cells.forEach(function(td){td.classList.toggle('changed',txt(original[keyOf(td)])!==txt(cur[keyOf(td)]))})}
+  function say(m){st.textContent=m}
+  function mode(on){sec.classList.toggle('editing',on);cells.forEach(function(td){td.contentEditable=on?'true':'false'});
+    btn('edit').hidden=on;btn('save').hidden=!on;btn('cancel').hidden=!on}
+  var saved=getJ(KEY,null);
+  if(saved&&saved.d){apply(saved.d);say('נטענו השינויים השמורים שלך')}
+  function doneMap(){return getJ(DKEY,{})}
+  function paintDone(){var d=doneMap(),c=0;[].forEach.call(sec.querySelectorAll('tbody tr[data-id]'),function(tr){var id=tr.getAttribute('data-id'),on=!!d[id];if(on)c++;
+      tr.classList.toggle('done',on);tr.querySelector('.ck').setAttribute('aria-pressed',on?'true':'false')});
+    sec.querySelector('.dr-prog').textContent='מוכנות: '+c+' מתוך '+sec.querySelectorAll('tbody tr[data-id]').length}
+  [].forEach.call(sec.querySelectorAll('.ck'),function(b){b.addEventListener('click',function(){var id=b.closest('tr').getAttribute('data-id'),d=doneMap(),on=!d[id];
+      if(on)d[id]=Date.now();else delete d[id];setJ(DKEY,d);
+      var h=getJ(HKEY,[]);h.push({t:Date.now(),c:[{k:id+'.done',before:on?'לא מוכן':'מוכן',after:on?'מוכן':'לא מוכן'}]});setJ(HKEY,h);
+      paintDone();render();say(on?'סצנה '+id+' סומנה כמוכנה ✓':'סצנה '+id+' סומנה כלא מוכנה')})});
+  paintDone(); render();
+  btn('edit').addEventListener('click',function(){snapshot=read();mode(true);say('מצב עריכה: אפשר ללחוץ על כל תא ולשנות')});
+  btn('cancel').addEventListener('click',function(){apply(snapshot);mode(false);say('השינויים בוטלו')});
+  btn('save').addEventListener('click',function(){mode(false);var cur=read(),c=changes(snapshot,cur);
+    if(!c.length){say('לא היו שינויים');return}
+    var h=getJ(HKEY,[]);h.push({t:Date.now(),c:c});var ok=setJ(HKEY,h)&&setJ(KEY,{t:Date.now(),d:cur});render();
+    say(ok?'נשמר ✓ '+c.length+' שינויים · '+new Date().toLocaleTimeString('he-IL'):'לא ניתן לשמור בדפדפן הזה. השתמש בייצוא קובץ.')});
+  btn('reset').addEventListener('click',function(){var cur=read(),c=changes(cur,original);apply(original);
+    if(c.length){var h=getJ(HKEY,[]);h.push({t:Date.now(),c:c,reset:true});setJ(HKEY,h)}
+    try{localStorage.removeItem(KEY)}catch(e){};mode(false);render();paintDone();say('הוחזרה הטיוטה המקורית (נרשם בהיסטוריה)')});
+  btn('export').addEventListener('click',function(){
+    var rows=[].slice.call(sec.querySelectorAll('tbody tr[data-id]')),out='# בית של חוט · סטוריבורד (טיוטה)\n\n';
+    rows.forEach(function(tr){var g=function(k){var c=tr.querySelector('[data-k="'+k+'"]');return c?txt(c.innerHTML):''};
+      out+='## '+tr.getAttribute('data-id')+' · '+g('title')+' ('+g('time')+')\n**ימין:** '+g('right')+'\n\n**מרכז:** '+g('center')+'\n\n**שמאל:** '+g('left')+'\n\n**מה שומעים:** '+g('hear')+'\n\n**הערות:** '+(g('notes')||'—')+'\n\n**מוכן:** '+(doneMap()[tr.getAttribute('data-id')]?'✅ כן':'לא')+'\n\n'});
+    var h=getJ(HKEY,[]);out+='---\n# היסטוריית שינויים\n\n';
+    if(!h.length)out+='אין שינויים שמורים.\n';
+    h.forEach(function(v,i){out+='## גרסה '+(i+1)+' · '+new Date(v.t).toLocaleString('he-IL')+(v.reset?' (איפוס)':'')+'\n';
+      v.c.forEach(function(x){var f=x.k.split('.')[1];out+='- **'+sceneName(x.k)+' · '+(LABEL[f]||f)+'**\n  - לפני: '+x.before+'\n  - אחרי: '+x.after+'\n'});out+='\n'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out],{type:'text/markdown;charset=utf-8'}));
+    a.download='beit-shel-chut-storyboard.md';document.body.appendChild(a);a.click();a.remove();say('הקובץ ירד לתיקיית ההורדות')});
+})();
+</script>
+
+<script>
+(function(){
+  // tabs
+  var tabs=[].slice.call(document.querySelectorAll('.tabs button')), panes=[].slice.call(document.querySelectorAll('.tab'));
+  function show(name){tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.t===name?'true':'false')});
+    panes.forEach(function(p){p.hidden=p.dataset.tab!==name});
+    try{localStorage.setItem('tiferet5-tab',name)}catch(e){}
+    if(name==='room')go(cur)}
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.t);history.replaceState(null,'','#'+b.dataset.t)})});
+
+  // [style, caption] for right, center, left
+  var SIM={
+   "1":[["ar","תמונות משפחה תקופתיות · בד על חישוק"],["la","ניסן נכנס בלילה ומדליק את האורות"],["ar","תמונות משפחה תקופתיות · בד על חישוק"]],
+   "2":[["ai","נשים מציצות מהשבכה אל הברית"],["ai","מסירת התאומים לקוואטרים"],["ai","נשים מציצות מהשבכה"]],
+   "3":[["ai","בלה והנשים שומעות את חנה בוכה"],["ai","חנה ליד השבכה, בלה לוחשת לה"],["ai","\"ה' ממית ומחיה\""]],
+   "4":[["emb","עיטורי המסגרת נרקמים"],["emb","לב המפית, עדיין ריק"],["emb","עיטורי המסגרת נרקמים"]],
+   "5":[["la","פנקס הזוכים · מבטה של חנה"],["ai","ההגרלה: הקופה והפתקים"],["ai","\"עלה בגורל: ר' שלום ברוך פריזנד\""]],
+   "6":[["ar","שטרות, הבנק, גזיר עיתון"],["ai","מאיר נכנס לבנק ולירו"],["la","ניסן מספר"]],
+   "7":[["emb","החלונות נרקמים"],["ai","חנה סופרת את החלונות"],["emb","מעקה הגג נרקם"]],
+   "8":[["night","הבזקים: \"הרי את\""],["night","החופה על הגג, לילה ונרות"],["ar","הנוף מהגג"]],
+   "9":[["ai","פרטי החצר"],["ai","החצר: הגט והסדין"],["ai","כביסה על החבל"]],
+   "10":[["ai","חנה מביטה איך העוגה נגמרת"],["ai","\"אשתי אפתה\" · אלה חמדה ליבי"],["emb","פינות המפית: יום טוב ושבת"]],
+   "11":[["emb","הכיפה הירוקה נרקמת"],["ai","חנה רואה את הכיפה"],["emb","הכיפה הירוקה נרקמת"]],
+   "12":[["ai","חנה במתח, ואז אושר"],["ai","\"מאיר לייב פישמן!\""],["ai","מאיר מרים את הראש"]],
+   "13":[["emb","\"הצדיק המושיע\""],["emb","\"מאיר יהודא לייב בן גיטל לאה לישועה\""],["ai","חנה מוסרת לו את המפית"]],
+   "14":[["ai","הנשים והתאומים מנופפים"],["ai","חמור · אונייה · ים · כרכרה"],["la","ניסן מספר"]],
+   "15":[["ai","חנה מביטה למעלה"],["ai","ציורי ארבע העונות"],["la","ניסן מתבונן"]],
+   "16":[["ai","הרבי · המטבע"],["img","המפית נחשפת בשלמותה"],["ai","היד נסגרת על המטבע"]],
+   "17":[["flow ai","גלגל · חרטום · פרסות"],["flow ai","מאיר מגיע לשער המערבי"],["flow ai","התנועה ממשיכה"]],
+   "18":[["ai","חלקי בית הכנסת"],["ai","מאיר מביט במבנה"],["ai","חלקי בית הכנסת"]],
+   "19":[["ai","בלה מציצה מהשבכה"],["ai","הברית של הבן"],["la","ניסן מתבונן"]],
+   "20":[["ar","תמונות משפחה"],["la","ניסן, הילד והמפית המקורית"],["ar","תמונות משפחה"]],
+   "21":[["gr","חושך"],["gr","קשתות · רולר"],["gr","חושך"]]
+  };
+  var SIDES=['right','center','left'];
+  var stage=document.getElementById('stage'), rows=[].slice.call(document.querySelectorAll('#draft tbody tr[data-id]'));
+  var ids=rows.map(function(r){return r.dataset.id}), cur=0, timer=null;
+  function cell(tr,k){var c=tr.querySelector('[data-k="'+k+'"]');return c?c.innerHTML:''}
+  function badges(html){var d=document.createElement('div');d.innerHTML=html;var seen={},out='';
+    [].forEach.call(d.querySelectorAll('.b'),function(b){if(!seen[b.className]){seen[b.className]=1;out+=b.outerHTML}});return out}
+  function kind(tr){var k=tr.querySelector('.kind');k=k?k.textContent:'';return /\+/.test(k)?'mix':/AI/.test(k)?'ai':/צילום/.test(k)?'la':'gr'}
+
+  // chairs: three rows standing on the floor, facing the center screen
+  (function(){var box=document.getElementById('chairs');
+    [[-560,6],[-780,6],[-1000,6]].forEach(function(r,ri){for(var i=0;i<r[1];i++){var d=document.createElement('div');d.className='chair';
+      d.style.left=(255+i*210)+'px';d.style.top=(900-190)+'px';d.style.transform='translateZ('+r[0]+'px)';
+      if(ri===0&&i===3){d.classList.add('hs');d.dataset.hs='1'}box.appendChild(d)}})})();
+  var hs=function(on){var o=document.querySelector('.chair[data-hs]');if(o)o.classList.toggle('hs',on);stage.querySelector('.seatlbl').hidden=!on};
+  // fit the 1600x900 world to the stage, and look around with pointer
+  var vp=document.getElementById('vp');
+  function fit(){var W=stage.clientWidth,H=stage.clientHeight||W*9/16,s=Math.max(W/1600,H/900);vp.style.transform='translate('+((W-1600*s)/2)+'px,'+((H-900*s)/2)+'px) scale('+s+')'}
+  fit();window.addEventListener('resize',fit);if(window.ResizeObserver)new ResizeObserver(fit).observe(stage);
+  function look(e){var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    if(x<0||x>1||y<0||y>1)return;vp.style.setProperty('--po-x',(50+(x-.5)*-46)+'%');vp.style.setProperty('--po-y',(46+(y-.5)*-22)+'%')}
+  stage.addEventListener('pointermove',look);
+  stage.addEventListener('pointerleave',function(){vp.style.setProperty('--po-x','50%');vp.style.setProperty('--po-y','46%')});
+  var chips=document.querySelector('.chips');
+  ids.forEach(function(id,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=id;
+    b.innerHTML=id+'<i class="k-'+kind(rows[i])+'"></i>';b.title='סצנה '+id+': '+rows[i].querySelector('[data-k=title]').textContent;
+    b.addEventListener('click',function(){stop();go(i)});chips.appendChild(b)});
+
+  function go(i){cur=(i+ids.length)%ids.length;var tr=rows[cur],id=ids[cur],sim=SIM[id]||[];
+    [].forEach.call(chips.children,function(b,j){b.setAttribute('aria-selected',j===cur?'true':'false')});
+    SIDES.forEach(function(s,j){var el=stage.querySelector('.scr[data-s="'+s+'"] .in'),sm=sim[j]||['ai',''];
+      el.className='in '+sm[0];el.style.backgroundImage=sm[0]==='img'?'url(assets/mapit.jpg)':'';
+      var html='<span class="sn">'+id+' · '+(s==='right'?'ימין':s==='left'?'שמאל':'מרכז')+'</span><div class="st">'+cell(tr,s)+'</div>';
+      el.innerHTML=html;
+      var fl=stage.querySelector('.fs[data-f="'+s+'"] .in');fl.className='in '+sm[0];fl.style.backgroundImage=el.style.backgroundImage;fl.innerHTML=html;
+      document.querySelector('.card[data-c="'+s+'"] .body').innerHTML=cell(tr,s)});
+    document.querySelector('[data-f=hear]').innerHTML=cell(tr,'hear');
+    document.querySelector('[data-f=notes]').innerHTML=cell(tr,'notes')||'—';
+    var pn=document.querySelector('[data-f=pins]');if(pn&&window.__notesFor){var nl=window.__notesFor(id);pn.innerHTML=nl.length?'<ul>'+nl.map(function(n){return '<li>'+n.title+' <span class="pill st-'+n.status+'">'+n.status+'</span></li>'}).join('')+'</ul><a onclick="__openNotes(\''+id+'\')">לכל הדגשים של הסצנה ←</a>':'אין דגשים לסצנה הזו'}
+    document.querySelector('.now-n').textContent=id;
+    document.querySelector('.now-t').textContent=tr.querySelector('[data-k=title]').textContent;
+    var tm=tr.querySelector('[data-k=time]');document.querySelector('.now-m').textContent=tm?tm.textContent.replace(/(\d)([A-Zא-ת])/,'$1 · $2'):'';
+    stage.classList.toggle('up',id==='21');
+    var lb=document.querySelector('[data-lights]');
+    if(id==='21'){stage.classList.add('lit')}else if(lb.getAttribute('aria-pressed')!=='true'){stage.classList.remove('lit')}
+    hs(id==='1'||id==='20');requestAnimationFrame(autofit)}
+  function autofit(){[].forEach.call(stage.querySelectorAll('.scr .in, .fs .in'),function(el){var k=1;el.style.setProperty('--k',k);var n=0;while(el.scrollHeight>el.clientHeight+1&&k>.42&&n++<40){k-=.04;el.style.setProperty('--k',k.toFixed(2))}})}
+  window.addEventListener('resize',function(){requestAnimationFrame(autofit)});
+  function stop(){if(timer){clearInterval(timer);timer=null}var p=document.querySelector('[data-play]');p.setAttribute('aria-pressed','false');p.textContent='▶ ניגון'}
+  document.querySelectorAll('.ctl [data-go]').forEach(function(b){b.addEventListener('click',function(){stop();go(cur+(+b.dataset.go))})});
+  document.querySelector('[data-play]').addEventListener('click',function(){var p=this;if(timer){stop();return}
+    p.setAttribute('aria-pressed','true');p.textContent='❚❚ עצירה';timer=setInterval(function(){if(cur===ids.length-1){stop();return}go(cur+1)},4500)});
+  document.querySelector('[data-flat]').addEventListener('click',function(){var on=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',on?'true':'false');stage.classList.toggle('flatmode',on);requestAnimationFrame(autofit)});
+  document.querySelector('[data-lights]').addEventListener('click',function(){var on=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',on?'true':'false');stage.classList.toggle('lit',on||ids[cur]==='21')});
+  stage.querySelectorAll('.scr').forEach(function(s){s.addEventListener('click',function(){
+    stage.querySelectorAll('.scr').forEach(function(x){x.classList.toggle('sel',x===s)});
+    document.querySelectorAll('.card[data-c]').forEach(function(c){c.classList.toggle('sel',c.dataset.c===s.dataset.s)});
+    var c=document.querySelector('.card[data-c="'+s.dataset.s+'"]');if(c&&c.scrollIntoView)c.scrollIntoView({behavior:'smooth',block:'nearest'})})});
+  document.addEventListener('keydown',function(e){if(document.getElementById('room').hidden||/INPUT|TEXTAREA/.test(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.key==='ArrowLeft'){stop();go(cur+1)}else if(e.key==='ArrowRight'){stop();go(cur-1)}});
+
+  var start=(location.hash||'').slice(1),m0=/^room-(\w+)$/.exec(start);if(m0){start='room'}
+  if(['room','board','prep','notes'].indexOf(start)<0){try{start=localStorage.getItem('tiferet5-tab')}catch(e){start=null}}
+  show(['room','prep','notes'].indexOf(start)>-1?start:'board');go(m0&&ids.indexOf(m0[1])>-1?ids.indexOf(m0[1]):0);
+})();
+</script>
+
+<script>
+(function(){
+  var DATA={
+ "updated": "7.10.26",
+ "notes": [
+  {
+   "id": 2,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "תמחור",
+   "status": "הוחלט",
+   "title": "ניסן צריך DNA ב-AI",
+   "text": "ניסן מופיע גם בתוך עולם ה-AI (סצנות 2 ו-5), ולכן צריך לייצר אותו כדמות על בסיס השחקן.",
+   "rec": ""
+  },
+  {
+   "id": 3,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "תמחור",
+   "status": "הוחלט",
+   "title": "DNA לכל דמות, גם למי שמופיע פעם אחת",
+   "text": "כל דמות שרואים בפריים צריכה DNA: השמש, התלמיד, הקוואטרית, השכנה, דוד ועוד. בסך הכול 20 סטים (ראה הטאב \"דמויות ולוקיישנים\").",
+   "rec": ""
+  },
+  {
+   "id": 4,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "תמחור",
+   "status": "הוחלט",
+   "title": "מיפוי מלא של בית הכנסת ב-AI",
+   "text": "חלק גדול מהסרט מתרחש בתוך בית הכנסת, ולכן צריך לבנות ב-AI את כל האזורים שלו, ביום ובלילה. בסך הכול 8 אזורים.",
+   "rec": ""
+  },
+  {
+   "id": 5,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "תמחור",
+   "status": "הוחלט",
+   "title": "כל הרקעים מחוץ לבית הכנסת מוכנים מראש",
+   "text": "עוברים על התסריט ומכינים מראש כל לוקיישן חיצוני. יש 10 כאלה, ראה הטאב \"דמויות ולוקיישנים\".",
+   "rec": ""
+  },
+  {
+   "id": 6,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [
+    3
+   ],
+   "cat": "הפקה",
+   "status": "פתוח",
+   "title": "המרכז ארוך והצדדים קצרים: מה מוצג כשאין תוכן?",
+   "text": "בסצנה 3 המסך המרכזי ארוך מאוד, ובצדדים יש מעט. מה מוקרן בצדדים בשאר הזמן? מסך שחור? ואיך זה משפיע על העלות?",
+   "rec": ""
+  },
+  {
+   "id": 7,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [
+    4,
+    7
+   ],
+   "cat": "הפקה",
+   "status": "המלצה",
+   "title": "תמונה אחת שמחולקת לשלושה מסכים: חיתוך או ייצור נפרד?",
+   "text": "בסצנה 4 המפית מחולקת לשלושה מסכים, ובסצנה 7 אותו סיפור. האם לייצר סרטון אחד ולתת לעורך לחתוך? זה מוריד איכות. ואם מייצרים מרכז ושוליים בנפרד, ההתאמה ביניהם מסובכת.",
+   "rec": ""
+  },
+  {
+   "id": 8,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [
+    17
+   ],
+   "cat": "הפקה",
+   "status": "המלצה",
+   "title": "סצנה 17: תנועה שעוברת בין שלושת המסכים",
+   "text": "גלגל, חרטום ורגלי חמור עוברים ממסך למסך. זה עלול להיות בעייתי בייצור.",
+   "rec": ""
+  },
+  {
+   "id": 9,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "עברית ודיבוב",
+   "status": "פתוח",
+   "title": "מה אורך הטקסטים שהדמויות אומרות בעברית?",
+   "text": "צריך לדעת כמה זמן דיבור יש לדמויות ה-AI, כי זה קובע הקלטות וסינק.",
+   "rec": ""
+  },
+  {
+   "id": 10,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "הפקה",
+   "status": "פתוח",
+   "title": "מה האורך של השוטים בערך?",
+   "text": "צריך הערכה של אורך השוטים וכמה שוטים יש.",
+   "rec": ""
+  },
+  {
+   "id": 11,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "עברית ודיבוב",
+   "status": "פתוח",
+   "title": "הדיבוב: עברית או אנגלית?",
+   "text": "באיזו שפה הדמויות מדברות?",
+   "rec": ""
+  },
+  {
+   "id": 12,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "עברית ודיבוב",
+   "status": "המלצה",
+   "title": "שיטת עבודה עם עברית",
+   "text": "יש הרבה קטעים בעברית, וצריך להחליט איך עובדים איתם.",
+   "rec": ""
+  },
+  {
+   "id": 13,
+   "date": "7.10.26",
+   "by": "אביחי",
+   "scenes": [],
+   "cat": "הדמיה",
+   "status": "בוצע",
+   "title": "החדר מרובע ומסכי הצד על הקירות",
+   "text": "בהדמיית החלל: חדר מרובע בתלת ממד, המסך המרכזי מול הקהל ומסכי הצד על הקיר הימני והשמאלי.",
+   "rec": ""
+  }
+ ]
+}
+;DATA.notes=DATA.notes.filter(function(n){return !n.scenes||!n.scenes.length});var LKEY='tiferet5-notes-local';
+  var sec=document.getElementById('notes'); if(!sec) return;
+  function getL(){try{return JSON.parse(localStorage.getItem(LKEY)||'[]')}catch(e){return []}}
+  function setL(v){try{localStorage.setItem(LKEY,JSON.stringify(v));return true}catch(e){return false}}
+  function all(){return DATA.notes.concat(getL())}
+  var CATS=['תמחור','הפקה','עברית ודיבוב','תסריט וסתירות','שאלות למשה','הדמיה'], STS=['פתוח','המלצה','הוחלט','בוצע'];
+  var SCLS={'פתוח':'s-open','המלצה':'s-rec','הוחלט':'s-done','בוצע':'s-done'};
+  var rows=[].slice.call(document.querySelectorAll('#draft tbody tr[data-id]'));
+  var titles={};rows.forEach(function(r){titles[r.dataset.id]=r.querySelector('[data-k=title]').textContent});
+  var f={status:'',cat:'',scene:''};
+  function btns(key,list){var box=sec.querySelector('.nf-row[data-f="'+key+'"]');
+    ['הכול'].concat(list).forEach(function(v,i){var b=document.createElement('button');b.type='button';b.textContent=v;b.setAttribute('aria-pressed',i===0?'true':'false');
+      b.addEventListener('click',function(){f[key]=i===0?'':v;[].forEach.call(box.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});draw()});box.appendChild(b)})}
+  btns('status',STS);btns('cat',CATS);
+  var ssel=sec.querySelector('select[data-f=scene]'), asel=sec.querySelector('select[data-a=scene]'), csel=sec.querySelector('select[data-a=cat]');
+  rows.forEach(function(r){[ssel,asel].forEach(function(s){var o=document.createElement('option');o.value=r.dataset.id;o.textContent=r.dataset.id+' · '+titles[r.dataset.id];s.appendChild(o)})});
+  CATS.forEach(function(c){var o=document.createElement('option');o.textContent=c;csel.appendChild(o)});
+  ssel.addEventListener('change',function(){f.scene=ssel.value;draw()});
+  function esc(t){return String(t).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function card(n){var sc=(n.scenes&&n.scenes.length)?n.scenes.map(function(s){return '<span class="pill sc">סצנה '+s+'</span>'}).join(''):'<span class="pill sc">כללי</span>';
+    return '<article class="ncard '+(SCLS[n.status]||'')+'"><div class="nh"><span class="nt">'+esc(n.title)+'</span>'+sc+'<span class="pill">'+esc(n.cat)+'</span><span class="pill st-'+esc(n.status)+'">'+esc(n.status)+'</span>'+(n.local?'<span class="pill loc">נוסף בדפדפן</span>':'')+'</div>'+
+      (n.text?'<p class="nx">'+n.text+'</p>':'')+(n.rec?'<p class="nr">'+n.rec+'</p>':'')+'</article>'}
+  function match(n){if(f.status&&n.status!==f.status)return false;if(f.cat&&n.cat!==f.cat)return false;
+    if(f.scene==='0'&&n.scenes.length)return false;if(f.scene&&f.scene!=='0'&&n.scenes.map(String).indexOf(f.scene)<0)return false;return true}
+  function draw(){var L=all().filter(match),out='',groups=[['0','כללי']].concat(rows.map(function(r){return [r.dataset.id,'סצנה '+r.dataset.id+' · '+titles[r.dataset.id]]}));
+    groups.forEach(function(g){var items=L.filter(function(n){return g[0]==='0'?!n.scenes.length:n.scenes.map(String).indexOf(g[0])>-1});
+      if(items.length)out+='<div class="ngrp"><h3>'+esc(g[1])+'<small>'+items.length+' דגשים</small></h3>'+items.map(card).join('')+'</div>'});
+    sec.querySelector('.nlist').innerHTML=out||'<p class="dr-empty">אין דגשים שמתאימים לסינון.</p>';
+    sec.querySelector('.nf-count').textContent=L.length+' מתוך '+all().length;pins()}
+  // pins on storyboard rows + hero counter
+  function openFor(id){f.scene=id;ssel.value=id;var t=document.querySelector('.tabs button[data-t=notes]');if(t)t.click();draw();window.scrollTo({top:sec.offsetTop-10,behavior:'smooth'})}
+  window.__notesFor=function(id){return all().filter(function(n){return n.scenes.map(String).indexOf(String(id))>-1})};
+  window.__openNotes=openFor;
+  function pins(){rows.forEach(function(r){var c=r.querySelector('td.t'),a=c.querySelector('a.pin'),k=window.__notesFor(r.dataset.id).length;
+      if(!k){if(a)a.remove();return}if(!a){a=document.createElement('a');a.className='pin';a.addEventListener('click',function(){openFor(r.dataset.id)});c.appendChild(document.createElement('br'));c.appendChild(a)}a.textContent='📌 '+k+' דגשים'});
+    var o=all().filter(function(n){return n.status==='פתוח'}).length,h=document.querySelector('.hero .openn');
+    if(h)h.textContent='📌 '+o+' דגשים פתוחים'}
+  var hl=document.querySelector('.hero .openn');if(hl)hl.addEventListener('click',function(){openFor('')});
+  sec.querySelector('[data-a=save]').addEventListener('click',function(){var t=sec.querySelector('[data-a=title]').value.trim(),x=sec.querySelector('[data-a=text]').value.trim(),s=sec.querySelector('.nadd-s');
+    if(!t){s.textContent='צריך כותרת';return}var L=getL(),sc=asel.value==='0'?[]:[asel.value];
+    L.push({id:'L'+(L.length+1),date:new Date().toLocaleDateString('he-IL'),by:'אביחי',scenes:sc,cat:csel.value,status:'פתוח',title:esc(t),text:esc(x),rec:'',local:true});
+    s.textContent=setL(L)?'נשמר בדפדפן ✓ כדי שייכנס לקובץ, ייצא ושלח לי':'לא ניתן לשמור בדפדפן הזה';sec.querySelector('[data-a=title]').value='';sec.querySelector('[data-a=text]').value='';draw()});
+  sec.querySelector('[data-a=export]').addEventListener('click',function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(getL(),null,1)],{type:'application/json'}));a.download='dgashim-new.json';document.body.appendChild(a);a.click();a.remove();sec.querySelector('.nadd-s').textContent='ירד לתיקיית ההורדות: dgashim-new.json'});
+  draw();
+})();
+</script>
+</body>
+</html>
