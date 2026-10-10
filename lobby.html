@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>סיפור בית הכנסת · סטוריבורד לובי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F1E8; --card:#FFFDF9; --ink:#1F1A14; --body:#4A4237; --muted:#857A6B;
+  --line:#E4DACB; --accent:#B4581C; --accent-soft:#F3E3D3; --flame:#E89A3C;
+  --f-head:"Frank Ruhl Libre",Georgia,serif; --f-body:"Heebo",system-ui,-apple-system,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1720px;margin:0 auto;padding:0 20px 60px}
+.films{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:18px 0 0}
+.films a{font:700 14px var(--f-body);border-radius:999px;padding:7px 16px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
+.films a.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.hero{padding:26px 0 10px;text-align:center}
+.hero .eb{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--accent)}
+.hero h1{font-family:var(--f-head);color:var(--ink);font-size:clamp(30px,6vw,46px);margin:6px 0 4px}
+.hero p{color:var(--muted);margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:26px 0 0;padding:0;list-style:none}
+.stats li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stats b{display:block;font-family:var(--f-head);color:var(--accent);font-size:26px;line-height:1.2}
+.stats span{font-size:14px}
+.b{display:inline-block;font:700 11.5px var(--f-body);border-radius:6px;padding:1px 7px;margin-inline-end:4px;vertical-align:1px;white-space:nowrap}
+.b.ai{background:#F3E3D3;color:#8A3E10;border:1px solid #E2C2A3}
+.b.la{background:#E3EFE6;color:#2F6B3A;border:1px solid #B6CDB9}
+.b.ar{background:#ECE8E1;color:#5F574B;border:1px solid #D6CFC3}
+.b.gr{background:#E6E9F2;color:#3D4A6B;border:1px solid #C6CCDD}
+.b.q{background:#FFF1C9;color:#7A5600;border:1px solid #E8CF85}
+.section-title{font-family:var(--f-head);color:var(--ink);font-size:clamp(24px,5vw,30px);margin:40px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.section-sub{color:var(--muted);margin:0 0 22px}
+
+#draft .dr-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+#draft .dr-bar button{font:600 14px var(--f-body);border-radius:999px;padding:8px 16px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+#draft .dr-bar button.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+#draft .dr-bar button[hidden]{display:none}
+#draft .dr-status{font-size:13px;color:var(--muted);margin-inline-start:auto}
+#draft .dr-note{font-size:14px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:0 0 14px}
+#draft .tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+#draft table{width:100%;border-collapse:collapse;min-width:1100px}
+#draft th{position:sticky;top:0;background:var(--accent-soft);color:var(--ink);font-size:13.5px;text-align:start;padding:10px 12px;border-bottom:1px solid var(--line)}
+#draft td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;line-height:1.65}
+#draft tr:last-child td{border-bottom:0}
+#draft td.n{font-family:var(--f-head);font-weight:700;color:var(--accent);font-size:18px;width:36px}
+#draft td.y{white-space:nowrap;font-size:13px;color:var(--muted);width:96px}
+#draft td.y .kind{display:block;margin-top:4px;font-weight:700;color:var(--ink)}
+#draft td.t{font-family:var(--f-head);font-weight:700;color:var(--ink);width:140px}
+#draft td[data-k="see"]{background:#FFF8EE;width:30%}
+#draft td[data-k="hear"]{background:#FFFBF4;width:34%}
+#draft.editing td[data-k]{background:#FFFBF2;outline:1px dashed var(--accent);outline-offset:-4px;cursor:text}
+#draft td[data-k]:focus{outline:2px solid var(--accent);background:#fff}
+#draft .dr-hist{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+#draft .dr-hist h3{font-family:var(--f-head);color:var(--ink);font-size:18px;margin:0 0 8px}
+#draft .dr-empty{margin:0;color:var(--muted);font-size:14px}
+#draft .dr-log{list-style:none;margin:0;padding:0}
+#draft .dr-log>li{border-top:1px solid var(--line);padding:10px 0}
+#draft .dr-log>li:first-child{border-top:0}
+#draft .dr-when{font-size:13px;font-weight:700;color:var(--accent)}
+#draft .dr-ch{margin:6px 0 0;font-size:14px;line-height:1.6}
+#draft .dr-ch b{color:var(--ink)}
+#draft .dr-ch del{background:#FBF0EC;color:#A33D1E;text-decoration:line-through;padding:0 2px}
+#draft .dr-ch ins{background:#EFF5F0;color:#2F6B3A;text-decoration:none;padding:0 2px}
+#draft td.changed{box-shadow:inset 3px 0 0 #2F6B3A}
+#draft td.dn,#draft th.dn{width:56px;text-align:center}
+#draft .ck{width:30px;height:30px;border-radius:8px;border:2px solid var(--line);background:#fff;cursor:pointer;font-size:18px;line-height:1;color:#fff;padding:0}
+#draft .ck[aria-pressed="true"]{background:#2F8A47;border-color:#2F8A47}
+#draft .ck[aria-pressed="true"]::after{content:"✓"}
+#draft tr.done td:not(.dn){opacity:.72}
+#draft tr.done td.n{color:#2F8A47}
+#draft td.notes{min-width:170px;font-size:14px;color:var(--body);background:#FFFEF9}
+#draft td.notes:empty::before{content:"—";color:var(--muted)}
+#draft .dr-prog{font-size:13.5px;font-weight:700;color:#2F6B3A;background:#EFF5F0;border:1px solid #B6CDB9;border-radius:999px;padding:4px 12px}
+
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.tl>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tl h3{font-family:var(--f-head);color:var(--ink);font-size:18px;margin:0 0 8px}
+.tl dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:15px}
+.tl dt{font-family:var(--f-head);font-weight:700;color:var(--accent);white-space:nowrap}
+.tl dd{margin:0}
+
+@media (max-width:900px){
+.wrap{padding:0 16px 40px}
+#draft .tw{border:0;background:none;overflow:visible}
+#draft table{min-width:0;display:block}
+#draft thead{display:none}
+#draft tbody{display:block}
+#draft tbody tr[data-id]{display:grid;grid-template-columns:auto auto 1fr;gap:4px 10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 12px;padding:12px 14px}
+#draft tbody tr[data-id] td{display:block;border:0;padding:0;width:auto!important;min-width:0}
+#draft td.dn{grid-column:1;grid-row:1}
+#draft td.n{grid-column:2;grid-row:1}
+#draft td.t{grid-column:3;grid-row:1;font-size:18px}
+#draft td.y{grid-column:1/-1;white-space:normal}
+#draft td.y .kind{display:inline-block;margin-inline-start:10px}
+#draft td[data-l]{grid-column:1/-1;background:none!important;border-top:1px dashed var(--line)!important;padding-top:9px!important;margin-top:6px}
+#draft td[data-l]::before{content:attr(data-l);display:block;font:700 12.5px var(--f-body);color:var(--accent);margin-bottom:3px}
+#draft td.notes:empty{display:none}
+#draft .dr-bar{gap:6px}#draft .dr-bar button{padding:7px 12px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="films" aria-label="סרטים"><a href="index.html" data-local="../קומה 5/סטוריבורד - בית של חוט.html">קומה 5 · בית של חוט</a><a class="on" aria-current="page">לובי כניסה · סיפור בית הכנסת</a></nav>
+<header class="hero">
+  <div class="eb">תפארת ישראל · לובי כניסה · טיוטה</div>
+  <h1>סיפור בית הכנסת</h1>
+  <p>סטוריבורד לפי התסריט, דרפט 3 מ-09/06/2026 · המספר: ניסן ב"ק</p>
+</header>
+<ul class="stats">
+<li><b>27</b><span>אייטמים בתסריט</span></li>
+<li><b>~9:55</b><span>אורך משוער</span></li>
+<li><b>6:00</b><span>אורך היעד לפי התסריט</span></li>
+<li><b>~3:55</b><span>לקצר כדי להגיע ליעד</span></li>
+<li><b>4</b><span>אייטמים בלי "מה רואים"</span></li>
+<li><b>23</b><span>חומרי ארכיון</span></li>
+<li><b>5</b><span>שוטים מצולמים</span></li>
+<li><b>1</b><span>שוטים ב-AI</span></li>
+</ul>
+
+<section id="draft">
+<h2 class="section-title">טיוטה: מה רואים ומה שומעים</h2>
+<p class="section-sub">מספרי האייטמים והטקסטים הם כמו בתסריט. הזמנים הם הערכה לפי אורך הקריינות, חוץ מהמקומות שבהם התסריט נותן אורך. לפי התסריט, בכל תאריך לועזי מופיעה על המסך גם השנה העברית (1843 · תר"ג). עמודת ההערות ריקה ומחכה להערות שלך.</p>
+<div class="dr-bar">
+  <button type="button" class="pri" data-act="edit">✏️ עריכה</button>
+  <button type="button" class="pri" data-act="save" hidden>💾 שמירה</button>
+  <button type="button" data-act="cancel" hidden>ביטול</button>
+  <button type="button" data-act="export">⬇️ ייצוא קובץ</button>
+  <button type="button" data-act="reset">איפוס לטיוטה המקורית</button>
+  <span class="dr-prog"></span>
+  <span class="dr-status" aria-live="polite"></span>
+</div>
+<p class="dr-note">לחיצה על <b>עריכה</b> מאפשרת לשנות כל תא. <b>שמירה</b> שומרת בדפדפן הזה. <b>ייצוא קובץ</b> מוריד את הטיוטה, כולל היסטוריית השינויים, לתיקיית ההורדות. כל שמירה נרשמת כגרסה, ותאים ששונו מסומנים בפס ירוק.</p>
+<div class="tw"><table>
+<thead><tr><th class="dn">מוכן</th><th>#</th><th>זמן</th><th>אייטם</th><th>מה רואים</th><th>מה שומעים</th><th>הערות</th></tr></thead>
+<tbody>
+<tr data-id="1"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">1</td><td class="y" data-k="time">~0:15<span class="kind">AI + ארכיון</span></td><td class="t" data-k="title">הפיצוץ</td>
+<td data-k="see"><span class="b ar">ארכיון</span> חושך. תמונות הסטילס של הפיצוץ.<br><span class="b ai">AI</span> רצף שיוצר מהסטילס סרט. התמונה האחרונה היא בית הכנסת החרב.</td>
+<td data-k="hear">סאונד אפקט: רעש של פיצוץ בית הכנסת וחורבן.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="2"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">2</td><td class="y" data-k="time">~0:10<span class="kind">ארכיון</span></td><td class="t" data-k="title">לא סוף הסיפור</td>
+<td data-k="see"><span class="b ar">ארכיון</span> על רקע תמונת החורבן האחרונה.</td>
+<td data-k="hear">ניסן (מארח, מספר):<br>אל חשש זה לא סופו של סיפור בית הכנסת<br>ובטח לא ההתחלה. שהרי בית הכנסת שלנו הוא</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="3"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">3</td><td class="y" data-k="time">~0:15<span class="kind">לבירור</span></td><td class="t" data-k="title">גבוה מעל גבוה</td>
+<td data-k="see"><span class="b q">לבירור</span> מראה בית הכנסת ניסן ב"ק מעל בית הכנסת החורבה, אל מול הר הבית. המקור לא צוין.</td>
+<td data-k="hear">גבוה - מעל גבוה - אל מול גבוה !<br>כך הוא בית הכנסת וכך הקהילה שבנינו כאן בתפארת ישראל.<br>כך הוא השם הרשמי, על שם האדמו"ר ר' ישראל מרוזי'ן.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="4"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">4</td><td class="y" data-k="time">~0:05<span class="kind">לבירור</span></td><td class="t" data-k="title">חזר לתפארתו</td>
+<td data-k="see"><span class="b q">לבירור</span> בתסריט לא כתוב מה רואים.</td>
+<td data-k="hear">ועכשיו,<br>סוף סוף הוא חזר לתפארתו לנגד עיננו.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="5"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">5</td><td class="y" data-k="time">~0:20<span class="kind">צילום</span></td><td class="t" data-k="title">ניסן מציג את עצמו</td>
+<td data-k="see"><span class="b la">צילום</span> CU של ניסן בק מציג את עצמו.</td>
+<td data-k="hear">ניסן, ניסן בק,<br>כמו הכינוי שקיבל בית הכנסת ברבות הימים.<br>או יותר נכון בית הכנסת כשמי שלי - ניסן בק'ס שול,<br>בית הכנסת של ניסן בק. משכני היה לא הרחק מכאן, ברחוב המידאן - מה שאצלכם נקרא רחוב משגב לדך.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="6"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">6</td><td class="y" data-k="time">~0:35<span class="kind">ארכיון</span></td><td class="t" data-k="title">1843: הציווי מהאדמו"ר</td>
+<td data-k="see"><span class="b ar">ארכיון</span> תמונות ירושלים 1840-1890.<br><span class="b ar">ארכיון</span> מעבר אל המכתב של הרבה לציווי רכישת קרקע.<br><span class="b ar">ארכיון</span> תמונת הרבה, האדמו"ר מרוז'ין. אין תמונה של הרבי. תמונה של "חצר הקודש", בית הכנסת המפואר שלו באירופה: זה האייקון הכי מוכר.</td>
+<td data-k="hear">הסיפור הידוע מתחיל כבר ב- 1843<br>האדמור ר' ישראל מרוז'ין שומע ממני, ש…<br>"צאר הברזל" הרוסי, ניקולאי פאבלוביץ', רוצה לבנות כנסייה על שטח זה.<br>והוא מחזק אותנו, החסידים, לנצחם,<br>להקדים ולהקים כאן בית כנסת.<br><br>וכך כותב לנו האדמו"ר: (קריינות קול אחר)<br>"לבנות שמה בית הכנסת ושאר דברים הנצרכים לטובת ירושלים עיר הקודש תבנה ותכונן במהרה בימינו"<br><br>ולא רק דיבורים...גם מעשים!<br>הרעבע שולח את הסכום המלא לרכישת המגרש.<br>ועלינו…. עלינו היה לגייס את כסף לבניה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="7"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">7</td><td class="y" data-k="time">~0:10<span class="kind">לבירור</span></td><td class="t" data-k="title">השליחות</td>
+<td data-k="see"><span class="b q">לבירור</span> בתסריט לא כתוב מה רואים.</td>
+<td data-k="hear">מתגלגלת לידי השליחות העצומה להקים את בית הכנסת שהיה מקום תפילה, בית לקהילת החסידים,<br>מקום להכנסת אורחים ולמקווה טהרה<br>בעיר הקודש בירושלים.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="8"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">8</td><td class="y" data-k="time">~0:10<span class="kind">ארכיון</span></td><td class="t" data-k="title">למציאות יש קצב משלה</td>
+<td data-k="see"><span class="b ar">ארכיון</span> מפה של העיר ירושלים בשנת 1883, שנת רכישת המגרש, שרואים שם שהמקום פנוי מבנין.</td>
+<td data-k="hear">(בניגון של לימוד)<br>ו..מצווה הבאה לידך אל תחמיצנה.<br><br>מוכנים הננו מיד לעשיה.<br>אך למציאות יש קצב משלה…<br>טראַכט און גוט לאַכט Mensch</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="9"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">9</td><td class="y" data-k="time">~0:05<span class="kind">ארכיון</span></td><td class="t" data-k="title">הפירמאן</td>
+<td data-k="see"><span class="b ar">ארכיון</span> צילום של הפירמאן.<br><span class="b q">לבירור</span> אולי גם תמונות מההווי העותמני. תמונה של הסולטן אולי?</td>
+<td data-k="hear">חמש עשרה שנים חיכינו לקבלת הפירמאן - רשיון בניה מהתורכים, שהגיע רק בשנת 1859.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="11"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">11</td><td class="y" data-k="time">~0:15<span class="kind">ארכיון + גרפיקה</span></td><td class="t" data-k="title">גיוס הכסף והבנייה</td>
+<td data-k="see"><span class="b ar">ארכיון</span> ציור של הרבי מסאדיגורא.<br><span class="b ar">ארכיון</span> צילום משנת 1869 שרואים את ביה"כ בלי כיפה.<br><span class="b gr">גרפיקה</span> כיתוב: 1859 · תרי"ח.</td>
+<td data-k="hear">בנו של הרבה מרוזין, האדמו"ר הזקן מסדיגורא, רותם את רבבות חסידיו באירופה לגיוס הממון לטובת השלמת הבנין בירושלים.<br>שלוש עשרה שנים לקח לנו לבנות את בית הכנסת, עד שכמעט הושלם, לבד מכיפת הבנין.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="12"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">12</td><td class="y" data-k="time">~0:40<span class="kind">ארכיון + גרפיקה</span></td><td class="t" data-k="title">פרנץ יוזף והכיפה</td>
+<td data-k="see"><span class="b ar">ארכיון</span> תמונות ביקורו של פרנץ יוזף בירושלים, וכמובן התמונה עם ניסן בק.<br><span class="b ar">ארכיון</span> תמונה של הכיפה הירוקה.<br><span class="b ar">ארכיון</span> המאמר בעיתון הלבנון, 1872.<br><span class="b ar">ארכיון</span> הצבי, 1879.<br><span class="b gr">גרפיקה</span> כיתוב: 1872 · תרל"ב.</td>
+<td data-k="hear">סיפור מספרים בירושלים על הקיסר פרנץ יוזף שבא לביקור בירושלים, ותהה מדוע אין כיסוי וגג לבית הכנסת - וכשעניתי ואמרתי: "כבוד הקיסר, אפילו בית הכנסת הסיר כובעו בפניך…" הבין את הרמז ותרם… 1000 פרנק להשלמת הבנין.<br><br>מה גדולה היתה ההתרגשות כאשר זכינו, לחנוך את בית הכנסת שנת 1872…<br>בתחילה הייתה הכיפה ירוקה.<br>עד שהתלוננו המוסלמים כי הצבע הירוק שמור למקומות הקדושים להם. והלחצים הגיעו עד לסולטאן התורכי.<br>ובעזרת תרומתו של הברון רוטשילד נצבעה הכיפה בלבן.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="13"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">13</td><td class="y" data-k="time">~0:20<span class="kind">לבירור</span></td><td class="t" data-k="title">שמחות, אורחים ומקווה</td>
+<td data-k="see"><span class="b q">לבירור</span> בתסריט לא כתוב מה רואים.</td>
+<td data-k="hear">זכינו ובבית הכנסת שלנו היו לא רק<br>תפילות אלא גם שמחות ובית הכנסת אורחים, ומקווה טהרה מחומם ובית מרחץ!<br>ומן השמים כיוונו שבית הכנסת נבנה על מקומו של מקווה עוד הבית השני.<br>כך זכינו לקיים רצף יהודי לדורות בירושלים.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="14"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">14</td><td class="y" data-k="time">~0:10<span class="kind">לבירור</span></td><td class="t" data-k="title">הגבאי והקהילה</td>
+<td data-k="see"><span class="b q">לבירור</span> ויזואל של טיש? לבדוק מה יש בחומר ארכיון.</td>
+<td data-k="hear">שנים רבות הייתי כאן גבאי.<br>אבל הוא תמיד היה שייך לקהילה – וקולות של לימוד תורה, ניגונים בהתוועדויות היו נשמעים מכאן עד חצות לילה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="15"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">15</td><td class="y" data-k="time">~0:25<span class="kind">ארכיון</span></td><td class="t" data-k="title">מהתורכים עד תש"ח</td>
+<td data-k="see"><span class="b ar">ארכיון</span> תורכים בירושלים.<br><span class="b ar">ארכיון</span> בריטים בירושלים.<br><span class="b ar">ארכיון</span> עמדת תפארת ישראל.</td>
+<td data-k="hear">השנים חלפו, התורכים גורשו מן הארץ,<br>ובמקומם באו הבריטים.<br>ובית כנסת המשיך לשרת את קהילת החסידים.<br>ויצחק בק זכה ופאר את בית הכנסת בציורי הקיר הנהדרים.<br><br>עד, עד המלחמה על עצמאות מדינת ישראל ב- 1948.<br>במלחמה הזו בית הכנסת שלנו לקח חלק בהגנה על העיר ושימש עמדה חשובה למגינים על הרובע היהודי.<br>(אולי להכניס כאן קטע של צלניקר מספר על הקרב בתוך בית הכנסת)</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="16"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">16</td><td class="y" data-k="time">~0:30<span class="kind">ארכיון</span></td><td class="t" data-k="title">נפילת הרובע</td>
+<td data-k="see"><span class="b ar">ארכיון</span> תמונות מהגירוש של הרובע ב-1948.</td>
+<td data-k="hear">אך.... (אנחת כאב)<br>חודשים ארוכים של קרבות נמשכו כאן בעיר<br>ואחרית דבר היה<br>שבאייר תש"ח - מאי 1948 נפל הרובע היהודי בידי הלגיון הירדני.<br><br>וביום שישי 28 במאי 1948 צעד ר' שיעה רבינוביץ, הגבאי, ומפתחות בית הכנסת בידו<br>לנעול את החלונות ולנעול את דלתות בית הכנסת.<br>ובשעות הצהרים שלפני כניסת שבת קודש פרשת בחוקותי.<br>לא נותר יהודי אחד בירושלים העתיקה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="17"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">17</td><td class="y" data-k="time">~0:15<span class="kind">ארכיון</span></td><td class="t" data-k="title">השבי והפיצוץ</td>
+<td data-k="see"><span class="b ar">ארכיון</span> הליכה לשבי.<br><span class="b ar">ארכיון</span> תמונת עבדאללה א-תל.<br><span class="b ar">ארכיון</span> תמונת בית הכנסת המפוצץ.</td>
+<td data-k="hear">314 יהודים נלקחים לשבי הירדני<br>את "תפארת ישראל"<br>מצווה עבדאללה א-תל, מפקד הלגיון בירושלים, לפוצץ,<br>וכך להשמיד כל זכר יהודי בירושלים.<br>"רבות מחשבות בלב איש ועצת ה' היא תקום"</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="18"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">18</td><td class="y" data-k="time">~0:05<span class="kind">ארכיון</span></td><td class="t" data-k="title">19 שנות שיממון</td>
+<td data-k="see"><span class="b ar">ארכיון</span> ירושלים חרבה.</td>
+<td data-k="hear">19 שנים הייתה העיר העתיקה של ירושלים תחת שלטון ירדני ועמדה בשיממונה. (פאוזה)</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="19"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">19</td><td class="y" data-k="time">~0:10<span class="kind">ארכיון</span></td><td class="t" data-k="title">ששת הימים</td>
+<td data-k="see"><span class="b ar">ארכיון</span> ויז'ואל של שחרור ירושלים.</td>
+<td data-k="hear">עד מלחמת ששת הימים באייר תשכ"ז 1967 בה<br>חיילנו, חיילי צבא ההגנה לישראל שחררו את ירושלים העתיקה</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="20"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">20</td><td class="y" data-k="time">~0:10<span class="kind">ארכיון</span></td><td class="t" data-k="title">השערים החרבים</td>
+<td data-k="see"><span class="b ar">ארכיון</span> מתוך חומרי ארכיון ישנים שלי ומתוך תמונות סטילס של מה שהיה עד תחילת השיקום.<br><span class="b q">לבירור</span> "# תמונת השל" (כך כתוב בתסריט).</td>
+<td data-k="hear">אבל…<br>גם לאחר שחרור ירושלים ושיקום הרובע<br>עמדו שערי בית הכנסת החרב כזיכרון כואב לפאר עברו.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="21"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">21</td><td class="y" data-k="time">~0:05<span class="kind">צילום</span></td><td class="t" data-k="title">מסימני הגאולה</td>
+<td data-k="see"><span class="b la">צילום</span> MS ניסן בק מדבר.</td>
+<td data-k="hear">מסימני הגאולה הוא<br>שקמים וחוזרים בתי הכנסת של ירושלים לתחייה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="22"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">22</td><td class="y" data-k="time">~0:10<span class="kind">גרפיקה</span></td><td class="t" data-k="title">ההחלטה לשקם</td>
+<td data-k="see"><span class="b gr">גרפיקה</span> כיתוב: 1997 · תשנ"ז.<br><span class="b gr">גרפיקה</span> כיתוב: 2013 · תשע"ג.<br><span class="b q">לבירור</span> בתסריט לא כתוב מה רואים.</td>
+<td data-k="hear">בשנת 1997 החלו המאמצים לשיקומו של בית הכנסת לשאת פרי.<br>ביום ירושלים 2013 מקבלת ממשלת ישראל החלטה לשקם את בית הכנסת.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="23"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">23</td><td class="y" data-k="time">~1:25<span class="kind">גרפיקה</span></td><td class="t" data-k="title">החפירה והממצאים</td>
+<td data-k="see"><span class="b q">לבירור</span> 60 שניות של ויז'ואל: חפירה, ארכיאולוגיה. המקור לא צוין.<br><span class="b gr">גרפיקה</span> כיתוב: 2020 · תש"פ.</td>
+<td data-k="hear">וכמו בעבר..<br>החלה הבניה רק שנים אחרי בניצוחה של החברה לשיקום ופיתוח הרובע היהודי.<br>יסודות בית הכנסת נחפרו ומתחתם נמצאו מקוואות טהרה שרדים מימי בית המקדש השני, גם … גם משקולת אבן הנושאת את שמה של משפחת קתרוס (בחצי חיוך ממתיק סוד) זו שהוזכרה במשנה.<br>והבונים, (פאוזה)<br>וכאז, גם היום, ירושלים נבנית על ידי אנשי חזון ומעשה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="24"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">24</td><td class="y" data-k="time">~0:30<span class="kind">צילום</span></td><td class="t" data-k="title">הרצל בן-ארי</td>
+<td data-k="see"><span class="b la">צילום</span> MS הרצל בבית הכנסת.</td>
+<td data-k="hear">הרצל בן-ארי:<br>על החזון של בית כנסת</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="27"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">27</td><td class="y" data-k="time">~0:50<span class="kind">צילום</span></td><td class="t" data-k="title">זקן החסידים</td>
+<td data-k="see"><span class="b la">צילום</span> MS בבית הכנסת.</td>
+<td data-k="hear">זקן חסידי בואיין/ סדיגורא (50 שניות)<br>על החלום שבו ישוב בית הכנסת למלא תפקיד בירושלים.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="28"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">28</td><td class="y" data-k="time">~1:00<span class="kind">לבירור</span></td><td class="t" data-k="title">מונטאז' השיקום</td>
+<td data-k="see"><span class="b q">לבירור</span> חפירה, יציקה, רישומים, טיימלפס, ציור על קירות, הפרזול, החוברות של שחזור הצבעים והציורים, עד קביעת מזוזה ופתיחת דלתות למבנה המושלם. המקור לא צוין.<br><span class="b q">לבירור</span> שוט אחרון: דלתות בית הכנסת נפתחות.<br><span class="b q">לבירור</span> תפילה גדולה בבית הכנסת.</td>
+<td data-k="hear">מוסיקה<br>באורך של כ 60 שניות</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="29"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">29</td><td class="y" data-k="time">~0:30<span class="kind">צילום</span></td><td class="t" data-k="title">פרק חדש</td>
+<td data-k="see"><span class="b la">צילום</span> שוט חוץ: רחפן מתרומם מעל בית הכנסת.</td>
+<td data-k="hear">עכשיו מתחיל פרק חדש בסיפורו של בית הכנסת.<br>פרק בו גם אתם לוקחים בו חלק.<br><br>בואו, היכנסו התענגו על מראהו הנפלא, על קולות התפילה והלימוד העולים ממנו.<br>ועל הסיפורים הנחבאים בין קירותיו.<br><br>78 שנים עמדנו כאן מול חורבן,<br>אני מביט בכם, מביט בבית הכנסת<br>שומע את קול התפילה והניגונים העולים ממנו<br>ויודע,<br>תפארת ישראל קם מחדש, והיה שוב<br>לגבוה מעל גבוה, אל מול גבוהה.</td>
+<td data-k="notes" class="notes"></td></tr>
+<tr data-id="30"><td class="dn"><button type="button" class="ck" aria-pressed="false" aria-label="סמן כמוכן"></button></td><td class="n">30</td><td class="y" data-k="time">~0:20<span class="kind">גרפיקה</span></td><td class="t" data-k="title">רולר סיום</td>
+<td data-k="see"><span class="b gr">גרפיקה</span> רולר סיום.</td>
+<td data-k="hear">אולי:<br>[ אח, אשרינו מה טוב חלקנו!<br>זכינו לבנות חורבה אחת מחורבות ירושלים - - -<br>בית הכנסת הגדול והמפואר היה לחלק בלתי נפרד מהנוף הירושלמי. אי אפשר היה לתאר את ירושלים בלי הכיפה המתנשאת, גבוה מעל גבוה…]</td>
+<td data-k="notes" class="notes"></td></tr>
+</tbody></table></div>
+<div class="dr-hist"><h3>היסטוריית שינויים</h3><p class="dr-empty">עוד אין שינויים שמורים.</p><ul class="dr-log"></ul></div>
+</section>
+
+<section id="timeline">
+<h2 class="section-title">טיים-ליין מתוך התסריט</h2>
+<p class="section-sub">שתי הטבלאות שמופיעות בסוף התסריט, כמו שהן.</p>
+<div class="tl">
+<div><h3>חייו של ניסן בק</h3><dl><dt>1815</dt><dd>הולדת ניסן בק בז'יטומיר, אוקראינה</dd><dt>1831</dt><dd>העלייה של משפחת בק לארץ ישראל</dd><dt>1839</dt><dd>ניסן עולה לירושלים בן 24</dd><dt>1843</dt><dd>תחילת המעורבות בהדפסת ספרים בירושלים</dd><dt>1857</dt><dd>הובלת הקמת בית הכנסת תפארת ישראל</dd><dt>1872</dt><dd>חנוכת בית הכנסת תפארת ישראל</dd><dt>1889</dt><dd>פטירת ניסן בק בירושלים</dd></dl></div>
+<div><h3>בית הכנסת תפארת ישראל</h3><dl><dt>1857</dt><dd>התחלת הבנייה ביוזמת ניסן בק</dd><dt>1872</dt><dd>חנוכת בית הכנסת תפארת ישראל</dd><dt>1948</dt><dd>חורבן בית הכנסת במהלך מלחמת העצמאות על ידי הירדנים</dd><dt>1948–2020</dt><dd>האתר עומד בשיממונו – שרידי החורבן ברובע היהודי</dd><dt>2020</dt><dd>תחילת שיקום ושיחזור בית הכנסת ביוזמת החברה לפיתוח הרובע היהודי</dd><dt>העתיד</dt><dd>פתיחה מחודשת – בית תפילה, לימוד ומרכז מבקרים</dd></dl></div>
+</div>
+</section>
+</div>
+
+<script>
+(function(){
+  if(location.protocol==='file:')[].forEach.call(document.querySelectorAll('a[data-local]'),function(a){a.setAttribute('href',encodeURI(a.getAttribute('data-local')))});
+})();
+</script>
+<script>
+(function(){
+  var sec=document.getElementById('draft'); if(!sec) return;
+  var KEY='tiferet-lobby-draft-v1', HKEY='tiferet-lobby-draft-hist-v1', DKEY='tiferet-lobby-draft-done-v1';
+  var cells=[].slice.call(sec.querySelectorAll('td[data-k]')), st=sec.querySelector('.dr-status'),
+      btn=function(a){return sec.querySelector('[data-act="'+a+'"]')}, original={}, snapshot={};
+  var LABEL={time:'זמן',title:'אייטם',see:'מה רואים',hear:'מה שומעים',notes:'הערות',done:'מוכן'};
+  function keyOf(td){return td.closest('tr').getAttribute('data-id')+'.'+td.getAttribute('data-k')}
+  function txt(h){var d=document.createElement('div');d.innerHTML=h;return (d.innerText||d.textContent).replace(/\s+/g,' ').trim()}
+  function esc(t){return t.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  cells.forEach(function(td){original[keyOf(td)]=td.innerHTML});
+  var ths=[].map.call(sec.querySelectorAll('thead th'),function(th){return th.textContent});
+  [].forEach.call(sec.querySelectorAll('tbody tr[data-id]'),function(tr){[].forEach.call(tr.children,function(td,i){if(/^(see|hear|notes)$/.test(td.getAttribute('data-k')||''))td.setAttribute('data-l',ths[i]||'')})});
+  function read(){var o={};cells.forEach(function(td){o[keyOf(td)]=td.innerHTML});return o}
+  function apply(o){cells.forEach(function(td){var k=keyOf(td);if(o&&o[k]!=null)td.innerHTML=o[k]})}
+  function getJ(k,d){try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}}
+  function setJ(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+  function sceneName(k){var tr=sec.querySelector('tr[data-id="'+k.split('.')[0]+'"]');var t=tr&&tr.querySelector('[data-k=title]');return k.split('.')[0]+' · '+(t?t.innerText.trim():'')}
+  function wdiff(a,b){var A=a.split(' '),B=b.split(' '),n=A.length,m=B.length,L=[];
+    for(var i=0;i<=n;i++){L[i]=[];for(var j=0;j<=m;j++)L[i][j]=0}
+    for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--)L[i][j]=A[i]===B[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    var out=[],i2=0,j2=0;while(i2<n&&j2<m){if(A[i2]===B[j2]){out.push(esc(A[i2]));i2++;j2++}
+      else if(L[i2+1][j2]>=L[i2][j2+1]){out.push('<del>'+esc(A[i2])+'</del>');i2++}else{out.push('<ins>'+esc(B[j2])+'</ins>');j2++}}
+    while(i2<n)out.push('<del>'+esc(A[i2++])+'</del>');while(j2<m)out.push('<ins>'+esc(B[j2++])+'</ins>');
+    return out.join(' ').replace(/<\/del> <del>/g,' ').replace(/<\/ins> <ins>/g,' ')}
+  function changes(prev,cur){var c=[];Object.keys(cur).forEach(function(k){var a=txt(prev[k]||''),b=txt(cur[k]||'');if(a!==b)c.push({k:k,before:a,after:b})});return c}
+  function render(){var h=getJ(HKEY,[]),log=sec.querySelector('.dr-log'),em=sec.querySelector('.dr-empty');log.innerHTML='';em.hidden=h.length>0;
+    h.slice().reverse().forEach(function(v,idx){var li=document.createElement('li');
+      li.innerHTML='<div class="dr-when">גרסה '+(h.length-idx)+' · '+new Date(v.t).toLocaleString('he-IL')+' · '+v.c.length+' שינויים</div>'+
+        v.c.map(function(x){var f=x.k.split('.')[1];return '<p class="dr-ch"><b>'+esc(sceneName(x.k))+' · '+(LABEL[f]||f)+':</b> '+wdiff(x.before,x.after)+'</p>'}).join('');
+      log.appendChild(li)});
+    var cur=read();cells.forEach(function(td){td.classList.toggle('changed',txt(original[keyOf(td)])!==txt(cur[keyOf(td)]))})}
+  function say(m){st.textContent=m}
+  function mode(on){sec.classList.toggle('editing',on);cells.forEach(function(td){td.contentEditable=on?'true':'false'});
+    btn('edit').hidden=on;btn('save').hidden=!on;btn('cancel').hidden=!on}
+  var saved=getJ(KEY,null);
+  if(saved&&saved.d){apply(saved.d);say('נטענו השינויים השמורים שלך')}
+  function doneMap(){return getJ(DKEY,{})}
+  function paintDone(){var d=doneMap(),c=0;[].forEach.call(sec.querySelectorAll('tbody tr[data-id]'),function(tr){var id=tr.getAttribute('data-id'),on=!!d[id];if(on)c++;
+      tr.classList.toggle('done',on);tr.querySelector('.ck').setAttribute('aria-pressed',on?'true':'false')});
+    sec.querySelector('.dr-prog').textContent='מוכנים: '+c+' מתוך '+sec.querySelectorAll('tbody tr[data-id]').length}
+  [].forEach.call(sec.querySelectorAll('.ck'),function(b){b.addEventListener('click',function(){var id=b.closest('tr').getAttribute('data-id'),d=doneMap(),on=!d[id];
+      if(on)d[id]=Date.now();else delete d[id];setJ(DKEY,d);
+      var h=getJ(HKEY,[]);h.push({t:Date.now(),c:[{k:id+'.done',before:on?'לא מוכן':'מוכן',after:on?'מוכן':'לא מוכן'}]});setJ(HKEY,h);
+      paintDone();render();say(on?'אייטם '+id+' סומן כמוכן ✓':'אייטם '+id+' סומן כלא מוכן')})});
+  paintDone(); render();
+  btn('edit').addEventListener('click',function(){snapshot=read();mode(true);say('מצב עריכה: אפשר ללחוץ על כל תא ולשנות')});
+  btn('cancel').addEventListener('click',function(){apply(snapshot);mode(false);say('השינויים בוטלו')});
+  btn('save').addEventListener('click',function(){mode(false);var cur=read(),c=changes(snapshot,cur);
+    if(!c.length){say('לא היו שינויים');return}
+    var h=getJ(HKEY,[]);h.push({t:Date.now(),c:c});var ok=setJ(HKEY,h)&&setJ(KEY,{t:Date.now(),d:cur});render();
+    say(ok?'נשמר ✓ '+c.length+' שינויים · '+new Date().toLocaleTimeString('he-IL'):'לא ניתן לשמור בדפדפן הזה. השתמש בייצוא קובץ.')});
+  btn('reset').addEventListener('click',function(){var cur=read(),c=changes(cur,original);apply(original);
+    if(c.length){var h=getJ(HKEY,[]);h.push({t:Date.now(),c:c,reset:true});setJ(HKEY,h)}
+    try{localStorage.removeItem(KEY)}catch(e){};mode(false);render();paintDone();say('הוחזרה הטיוטה המקורית (נרשם בהיסטוריה)')});
+  btn('export').addEventListener('click',function(){
+    var rows=[].slice.call(sec.querySelectorAll('tbody tr[data-id]')),out='# סיפור בית הכנסת · סטוריבורד לובי (טיוטה)\n\n';
+    rows.forEach(function(tr){var g=function(k){var c=tr.querySelector('[data-k="'+k+'"]');return c?txt(c.innerHTML):''};
+      out+='## '+tr.getAttribute('data-id')+' · '+g('title')+' ('+g('time')+')\n**מה רואים:** '+g('see')+'\n\n**מה שומעים:** '+g('hear')+'\n\n**הערות:** '+(g('notes')||'—')+'\n\n**מוכן:** '+(doneMap()[tr.getAttribute('data-id')]?'✅ כן':'לא')+'\n\n'});
+    var h=getJ(HKEY,[]);out+='---\n# היסטוריית שינויים\n\n';
+    if(!h.length)out+='אין שינויים שמורים.\n';
+    h.forEach(function(v,i){out+='## גרסה '+(i+1)+' · '+new Date(v.t).toLocaleString('he-IL')+(v.reset?' (איפוס)':'')+'\n';
+      v.c.forEach(function(x){var f=x.k.split('.')[1];out+='- **'+sceneName(x.k)+' · '+(LABEL[f]||f)+'**\n  - לפני: '+x.before+'\n  - אחרי: '+x.after+'\n'});out+='\n'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out],{type:'text/markdown;charset=utf-8'}));
+    a.download='tiferet-lobby-storyboard.md';document.body.appendChild(a);a.click();a.remove();say('הקובץ ירד לתיקיית ההורדות')});
+})();
+</script>
+</body>
+</html>

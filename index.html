@@ -16,6 +16,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1720px;margin:0 auto;padding:0 20px 60px}
+.films{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:18px 0 0}.films a{font:700 14px var(--f-body);border-radius:999px;padding:7px 16px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}.films a.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .hero{padding:40px 0 10px;text-align:center}
 .hero .eb{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--accent)}
 .hero h1{font-family:var(--f-head);color:var(--ink);font-size:clamp(30px,6vw,46px);margin:6px 0 4px}
@@ -358,6 +359,8 @@ html.nofs-scroll,html.nofs-scroll body{overflow:hidden}
 </head>
 <body>
 <div class="wrap">
+<nav class="films" aria-label="סרטים"><a class="on" aria-current="page">קומה 5 · בית של חוט</a><a href="lobby.html" data-local="../קומה 3/סטוריבורד - לובי כניסה.html">לובי כניסה · סיפור בית הכנסת</a></nav>
+<script>if(location.protocol==='file:')[].forEach.call(document.querySelectorAll('a[data-local]'),function(a){a.setAttribute('href',encodeURI(a.getAttribute('data-local')))})</script>
 <header class="hero">
   <div class="eb">תפארת ישראל · קומה 5 · טיוטה</div>
   <h1>בית של חוט</h1>
