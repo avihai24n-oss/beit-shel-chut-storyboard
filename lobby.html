@@ -80,6 +80,12 @@ body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);f
 .tl dt{font-family:var(--f-head);font-weight:700;color:var(--accent);white-space:nowrap}
 .tl dd{margin:0}
 
+.pv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.pv figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pv video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.pv figcaption{padding:12px 14px;font-size:15px;line-height:1.65}
+.pv figcaption b{display:block;font-family:var(--f-head);color:var(--ink);font-size:18px;margin-bottom:4px}
+
 @media (max-width:900px){
 .wrap{padding:0 16px 40px}
 #draft .tw{border:0;background:none;overflow:visible}
@@ -108,6 +114,21 @@ body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);f
   <h1>סיפור בית הכנסת</h1>
   <p>סטוריבורד לפי התסריט, דרפט 3 מ-09/06/2026 · המספר: ניסן ב"ק</p>
 </header>
+
+<section id="pilot">
+<h2 class="section-title">פיילוט AI: ניסן ב"ק מדבר בעברית</h2>
+<p class="section-sub">שני קטעי ניסיון שהופקו ב-AI בתוך בית הכנסת המשוחזר, עם דיבור בעברית ותנועת שפתיים מסונכרנת. הקטעים לא לקוחים מהתסריט: הם נכתבו לפיילוט כדי לבדוק את הדמות, את הקול ואת הדיבוב לפני ההפקה. איכות טסט (720p).</p>
+<div class="pv">
+  <figure>
+    <video controls playsinline preload="metadata" poster="assets/pilot/pilot-1-nisan-entrance.jpg"><source src="assets/pilot/pilot-1-nisan-entrance.mp4" type="video/mp4"></video>
+    <figcaption><b>1 · ניסן נכנס לבית הכנסת</b>מבט מעזרת הנשים מבעד לסורג, ניסן פותח את הדלת ונכנס. קאט, והוא פונה אל הצופים: "ברוכים הבאים לתפארת ישראל. הביטו בכיפה, בקשתות, בית הכנסת שקראו על שמי, ניסן בק."</figcaption>
+  </figure>
+  <figure>
+    <video controls playsinline preload="metadata" poster="assets/pilot/pilot-2-dialogue-paintings.jpg"><source src="assets/pilot/pilot-2-dialogue-paintings.mp4" type="video/mp4"></video>
+    <figcaption><b>2 · דיאלוג על ציורי התקרה</b>בחור חסידי שואל את ניסן, שעומד על הבימה: "רבי ניסן, מי צייר את הציורים הנפלאים האלה?" ניסן עונה: "הנכד שלי, יצחק. יפים להפליא, נכון?" שתי דמויות, שני קולות, כל אחת עם הדיבוב שלה.</figcaption>
+  </figure>
+</div>
+</section>
 
 <section id="draft">
 <h2 class="section-title">טיוטה: מה רואים ומה שומעים</h2>
